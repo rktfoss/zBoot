@@ -1,4 +1,4 @@
--**About**
+ **About**
 
 zBoot or "Zig Boot" is a Proposed Unix Boot Control System written in Zig designed to be **fast, secure, and flexible**—without forcing trade-offs between functionality and
 reliability. While existing bootloaders like GRUB and systemd-boot serve their purpose, they lack easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems.
