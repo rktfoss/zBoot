@@ -5,15 +5,14 @@ reliability. While existing bootloaders like GRUB and systemd-boot serve their p
 
 zBoot aims to provide a **better default experience** by:
 - **Detecting hardware** and providing drivers to the operating systems in a seamless manner.  
-- **Guided user experience** providing the user with the ability to select between kernels, Linux &/or BSD & full desktop settings long term, will make the experience better for all.
+- **Guided user experience** providing the user with the ability to select between kernels, Linux &/or BSD & full desktop settings long term, will just make booting better.
 - **Encouraging secure partitioning** as the norm to protect user data loss in the event of system crashes.
 - **Eliminating password fatigue** by leveraging YubiKey & the like, for full drive by drive disk encryption & site by site integration.
 - **With an aim to replace the need for a display manager** in the long term, streamlining the boot-to-desktop process & finally getting rid of "that stupidly small font on so many installs & who knows, maybe even fixing the scaling issues ;-}"
 
-Inspired by **Andrew Kelley’s work on Zig** (In getting down low and modernising, along with his "making Code you love" attitude) and **Mitchell Hashimoto’s Ghostty** (I too can see a world where I compute ghostty2ghostty, "Home base with solid hardware & move around with a little ghostty in the pocket), zBoot seeks to modernise the boot process without sacrificing stability.
+Inspired by **Andrew Kelley’s work on Zig** (In getting down low and modernising, along with his "making Code you love" attitude) and **Mitchell Hashimoto’s Ghostty** (I too can see a world where I compute ghostty2ghostty, "Home base with solid hardware & move around with a little ghostty in the pocket), zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
 
-While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to be solid booting experience "server standard reliability" with the addition of **security features, system prep, and usability**—without
-forcing compromises.
+While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to provide a solid booting experience with "server standard reliability" and the addition of **security features, system prep, and usability**—without compromise.
 
 Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security and
 recovery without breaking existing workflows.
