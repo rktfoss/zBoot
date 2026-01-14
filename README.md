@@ -1,6 +1,6 @@
 About zBoot
 
-zBoot is a Proposed Unix Boot Control System designed to be **fast, secure, and flexible**—without forcing trade-offs between functionality and
+zBoot or "Zig Boot" is a Proposed Unix Boot Control System written in Zig designed to be **fast, secure, and flexible**—without forcing trade-offs between functionality and
 reliability. While existing bootloaders like GRUB and systemd-boot serve their purpose, they lack easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems.
 
 zBoot aims to provide a **better default experience** by:
@@ -17,6 +17,9 @@ forcing compromises.
 
 Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security and
 recovery without breaking existing workflows.
+
+- **zBoot is NOT assoiated with the creators of zig, ziglang or entities betrothed by zig.**
+- "Not saying we don't want to be, just don't blame Zig if zBoot breaks your system, that will be on us !"
 
 Contact details for **Contributers only**
 buildr@zboot.org 
