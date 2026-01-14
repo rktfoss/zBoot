@@ -12,7 +12,7 @@ zBoot aims to provide a **better default experience** by:
 
 Inspired by **Andrew Kelley’s work on Zig** (In getting down low and modernising, along with his "making Code you love" attitude) and **Mitchell Hashimoto’s Ghostty** (I too can see a world where I compute ghostty2ghostty, "Home base with solid hardware & move around with a little ghostty in the pocket), zBoot seeks to modernise the boot process without sacrificing stability.
 
-While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & fore-mostly to be solid booting experience "server standard reliability" with the addition of **security features, system prep, and usability**—without
+While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to be solid booting experience "server standard reliability" with the addition of **security features, system prep, and usability**—without
 forcing compromises.
 
 Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security and
