@@ -3,18 +3,19 @@
 'zBoot' short for 'Zig Boot' is a Proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible** without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd does a great job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
 
 zBoot aims to provide a **better default experience** by:
-- **Detecting hardware** providing drivers to the operating systems in a "well documented" seamless manner.  
-- **Guided user experience** providing the ability to select between kernels, Linux &/or BSD and 'full desktop settings'-long term, will improve the entire UNIX-Like experience for coders & users.
-- **Encouraging secure partitioning** as the norm to protect user data loss in the event of system crashes.
+- **Detecting hardware** providing a complete system map & preloaded drivers to the operating systems in a 'well documented' easy to follow flow.
+- **Guided user experience** Providing kernel selection, Linux &/or BSD, Guided best practice in file creation, manipulation, security & maintenance along with desktop settings-long term, will improve the entire UNIX-Like experience for coders, sysadmin & users alike. 
+- **System security** zBoot to be downloaded prior to any operating systems, allowing an immutable fall back, with files & settings intact. Operating systemn, Kernals & desktop environments will be available to download and install from within zBoots UI. 
+- **Encouraging secure partitioning** as the standard to protect user data loss in the event of system crashes.
 - **Eliminating password fatigue** by leveraging YubiKey & the like, for full drive by drive disk encryption & site by site integration.
-- **Aiming to replace display managers** "long term", streamlining the boot-to-desktop process allowing kernal developers to focus on the kernal & designers to focus on designs while we take care of the less glamorous side. In moving towards a full featured system, zBoot must always be available in a 'lite' &/or 'server edition' for industrial puropses & minimalist alike.     
+- **Aiming to replace display managers** "long term", streamlining the boot-to-desktop process allowing kernal developers to focus on the kernal & designers to focus on designs while we take care of the less glamorous side.
+- **moving towards a full featured system** zBoot must always remain available in a 'server edition' for industrial puropses & those requiring a micro loader/manager.     
 
-Inspired by **Andrew Kelley’s work on Zig** (In getting down low and modernising, along with his "making Code you love" attitude) and **Mitchell Hashimoto’s Ghostty** (I too can see a world where I compute ghostty2ghostty, "Home base with solid hardware & move around with a little ghostty in the pocket), zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
+Inspired by **Andrew Kelley’s work on Zig** ( And getting down low and modernising, along with his "making Code you love" attitude ) and **Mitchell Hashimoto’s Ghostty** ( I too see a world where I compute ghostty2ghostty ) zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
 
 While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to provide a solid booting experience including "server standard reliability" with the addition of **security & userbility features and seemless system prep**—without compromise.
 
-Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security and
-recovery without breaking existing workflows.
+Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security, recovery & userbility without breaking existing workflows.
 
 - **zBoot is NOT assoiated with the creators of Zig, ziglang.org or entities betrothed within the Zig Foundation.**
   
