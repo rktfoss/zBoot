@@ -21,7 +21,7 @@ recovery without breaking existing workflows.
 - **"Not saying we don't want to be, just don't blame Zig if 'zBoot' breaks your system, that will be on us !"**
 
 **Manufacturers**-Our testing is restricted to the hardward we have access too. 
- ** Note to Manufacturers ** Testing will comence immediately post installation and continue throughout the lifetime of the machine. All code produced for your machines is yours to freely distribute without recognition. You will be provided with monthly documentation in the first year then quarterly thereafter throughout the lifetime of the machine.  
+ Note to Manufacturers - Testing will comence immediately post installation and continue throughout the lifetime of the machine. All code produced for your machines is yours to freely distribute without recognition. You will be provided with monthly documentation in the first year then quarterly thereafter throughout the lifetime of the machine.  
 Due to the overheads & effort involved in conducting our testing, all machines sent in for testing become the property of the zboot foundation.  
 
 
