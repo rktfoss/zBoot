@@ -22,21 +22,21 @@ codeIncluded: no
 
 
    zBoot/                             
-	    ├── src/                        
-	  	├── main.zig/               
+	  └── src/                        
+	      ├── main.zig/               
 		  ├── hardware/ 
 		  ├── auth/       
-		  │   ├── drivers/   
-      │   ├── network/	
-      │   ├── bluetooth/
-      │   └── ui/
-      │   
-		  ├── build.zig
+	      │    ├── drivers/   
+          │    ├── network/	
+          │    ├── bluetooth/
+          │    └── ui/
+          │   
+    	  ├── build.zig
 		  ├── config/
 		  │   └── user.cfg
-		  │ 	└── default.cfg			
-      │
-      └── docs/
+		  │   └── default.cfg			
+          │
+          └── docs/
 	    
 
 
