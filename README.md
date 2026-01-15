@@ -1,6 +1,6 @@
  **About**
 
-'zBoot' short for 'Zig Boot' is a Proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible**—without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd does a good job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
+'zBoot' short for 'Zig Boot' is a Proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible** without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd does a good job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
 
 zBoot aims to provide a **better default experience** by:
 - **Detecting hardware** providing drivers to the operating systems in a "well documented" seamless manner.  
