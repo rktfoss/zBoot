@@ -5,11 +5,11 @@
 zBoot aims to provide a **better default experience** by:
 - **Detecting hardware** providing a complete system map & preloaded drivers to the operating systems in a 'well documented' easy to follow flow.
 - **Guided user experience** Providing kernel selection, Linux &/or BSD, Guided best practice in file creation, manipulation, security & maintenance along with desktop settings-long term, will improve the entire UNIX-Like experience for coders, sysadmin & users alike. 
-- **System security** zBoot to be downloaded prior to any operating systems, allowing an immutable fall back, with files & settings intact. Operating systemn, Kernals & desktop environments will be available to download and install from within zBoots UI. 
+- **System security** zBoots main branch to be downloaded prior to operating systems, allowing an immutable fall back, with files & settings intact. Operating systemn, Kernals & desktop environments to be made down or side loadable, searchable and installable from within zBoots UI. All system operations do so in levels above zBoot with little to no access to zBoot, providing an immutable isolation layer & multiplying your security exponentially     
 - **Encouraging secure partitioning** as the standard to protect user data loss in the event of system crashes.
-- **Eliminating password fatigue** by leveraging YubiKey & the like, for full drive by drive disk encryption & site by site integration.
-- **Aiming to replace display managers** "long term", streamlining the boot-to-desktop process allowing kernal developers to focus on the kernal & designers to focus on designs while we take care of the less glamorous side.
-- **moving towards a full featured system** zBoot must always remain available in a 'server edition' for industrial puropses & those requiring a micro loader/manager.     
+- **Eliminating password fatigue** by leveraging cryptographically secured pysical USB keys like YubiKey below the operating system level, for full drive by drive disk encryption & site by site integration, with passwords managed throughout the entire uptime, when r,oved, their entire system will be encrypted.  
+- **Aiming to replace display managers** "long term goal", streamlining the boot-to-desktop process allowing kernal developers to focus on their kernals & designers to focus on designing while we take care of the less glamorous side.
+- **moving towards a full featured system** "zBoot aims to grow into a fully fledged 'build your own system'", though in saying that, zBoot MUST always remain available in a 'server edition' for industrial puropses & those requiring a micro loader/manager.     
 
 Inspired by **Andrew Kelley’s work on Zig** ( And getting down low and modernising, along with his "making Code you love" attitude ) and **Mitchell Hashimoto’s Ghostty** ( I too see a world where I compute ghostty2ghostty ) zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
 
