@@ -304,6 +304,7 @@ the 'todo' list
 
 All rights Reserved yata yata yata, "DO WHAT EVER YOU WANT WITH IT" The best software is always free.
 
-Contact details for **Contributers only**
-buildr@zboot.org 
+**muchLove**
+brawijaya
+zboot.org 
 
