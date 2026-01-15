@@ -4,7 +4,7 @@
 
 zBoot aims to provide a **better default experience** by:
 - **Detecting hardware** providing drivers to the operating systems in a "well documented" seamless manner.  
-- **Guided user experience** providing the ability to select between kernels, Linux &/or BSD & FULL desktop settings-long term, will improve the entire UNIX-Like experience all around.
+- **Guided user experience** providing the ability to select between kernels, Linux &/or BSD & FULL desktop settings-long term, will improve the entire UNIX-Like experience.
 - **Encouraging secure partitioning** as the norm to protect user data loss in the event of system crashes.
 - **Eliminating password fatigue** by leveraging YubiKey & the like, for full drive by drive disk encryption & site by site integration.
 - **Aiming to replace display managers** "long term", streamlining the boot-to-desktop process allowing kernal developers to focus on the kernal & designers to focus on designs while we take care of the less glamorous side. In moving towards a full featured system, zBoot must always be available in a 'lite' &/or 'server edition' for industrial puropses & minimalist alike.     
