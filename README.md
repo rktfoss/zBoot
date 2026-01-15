@@ -1,27 +1,36 @@
  **About**
 
-zBoot or "Zig Boot" is a Proposed Unix Boot Control System written in Zig designed to be **fast, secure, and flexible**—without forcing trade-offs between functionality and
-reliability. While existing bootmanager & bootloaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd does a good job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
+'zBoot' short for 'Zig Boot' is a Proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible**—without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd does a good job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
 
-zBoot to provide a **better default experience** by:
-- **Detecting hardware** and providing drivers to the operating systems in a seamless manner.  
-- **Guided user experience** providing users the ability to select between kernels, Linux &/or BSD & full desktop settings long term, will just make booting better.
+zBoot aims to provide a **better default experience** by:
+- **Detecting hardware** providing drivers to the operating systems in a "well documented" seamless manner.  
+- **Guided user experience** providing the ability to select between kernels, Linux &/or BSD & FULL desktop settings-long term, will improve the entire UNIX-Like experience.
 - **Encouraging secure partitioning** as the norm to protect user data loss in the event of system crashes.
 - **Eliminating password fatigue** by leveraging YubiKey & the like, for full drive by drive disk encryption & site by site integration.
 - **Aiming to replace display managers** "long term", streamlining the boot-to-desktop process allowing kernal developers to focus on the kernal & designers to focus on designs while we take care of the less glamorous side. In moving towards a full featured system, zBoot must always be available in a 'lite' &/or 'server edition' for industrial puropses & minimalist alike.     
 
 Inspired by **Andrew Kelley’s work on Zig** (In getting down low and modernising, along with his "making Code you love" attitude) and **Mitchell Hashimoto’s Ghostty** (I too can see a world where I compute ghostty2ghostty, "Home base with solid hardware & move around with a little ghostty in the pocket), zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
 
-While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to provide a solid booting experience inc "server standard reliability" with the addition of **security features, system prep, and usability**—without compromise.
+While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to provide a solid booting experience including "server standard reliability" with the addition of **security & userbility features and seemless system prep**—without compromise.
 
 Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security and
 recovery without breaking existing workflows.
 
-- **zBoot is NOT assoiated with the creators of zig, ziglang or entities betrothed by zig.**
-- "Not saying we don't want to be, just don't blame Zig if zBoot breaks your system, that will be on us !"
+- **zBoot is NOT assoiated with the creators of Zig, ziglang.org or entities betrothed by Zig.**
+- "Not saying we don't want to be, just don't blame 'Zig' if 'zBoot' breaks your system, that will be on us !"
 
-Contact details for **Contributers only**
+**Manufacturers**-Our testing is restricted to the hardward we have access too. 
+Note: Once your machines is in place, it stays, We are NOT youtubers or your local drop off computer store.
+We will continue testing throughout the lifetime of the machine, providing quarterly documentation of testing procedures. 
+
+
+Contact details 
+
+ **Contributers only**
 buildr@zboot.org 
+
+ **Manufacturers only**
+manu@zboot.org
 
 
 # Phase 1: Development Environment Setup
