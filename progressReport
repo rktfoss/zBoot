@@ -16,3 +16,27 @@ codeIncluded: no
 -editing source tree structure to include immutable partition,  
 -developing FIDO2 implimentations,
 -designing TUI layout.
+
+
+ ** initial project structure**
+
+
+   zBoot/                             
+	    ├── src/                        
+	  	├── main.zig/               
+		  ├── hardware/ 
+		  ├── auth/       
+		  │   ├── drivers/   
+      │   ├── network/	
+      │   ├── bluetooth/
+      │   └── ui/
+      │   
+		  ├── build.zig
+		  ├── config/
+		  │   └── user.cfg
+		  │ 	└── default.cfg			
+      │
+      └── docs/
+	    
+
+
