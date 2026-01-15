@@ -16,8 +16,9 @@ While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first
 Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security and
 recovery without breaking existing workflows.
 
-- **zBoot is NOT assoiated with the creators of Zig, ziglang.org or entities betrothed by Zig.**
-- "Not saying we don't want to be, just don't blame 'Zig' if 'zBoot' breaks your system, that will be on us !"
+- **zBoot is NOT assoiated with the creators of Zig, ziglang.org or entities betrothed within the Zig Foundation.**
+  
+- **"Not saying we don't want to be, just don't blame Zig if 'zBoot' breaks your system, that will be on us !"**
 
 **Manufacturers**-Our testing is restricted to the hardward we have access too. 
  ** Note to Manufacturers ** Testing will comence immediately post installation and continue throughout the lifetime of the machine. All code produced for your machines is yours to freely distribute without recognition. You will be provided with monthly documentation in the first year then quarterly thereafter throughout the lifetime of the machine.  
