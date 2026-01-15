@@ -1,0 +1,18 @@
+-**updates appear below in order of date entered with the newest to always appear at the top**
+---------------------------------------- keep above-------------------------------------------
+
+
+
+
+
+
+
+**progressReport: 2026/1/16**
+author: brawijaya
+codeIncluded: no
+
+**Initial design phase** 
+
+-editing source tree structure to include immutable partition,  
+-developing FIDO2 implimentations,
+-designing TUI layout.
