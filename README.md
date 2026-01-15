@@ -4,7 +4,7 @@
 
 zBoot aims to provide a **better default experience** by:
 - **Detecting hardware** providing a complete system map & preloaded drivers to the operating systems in a 'well documented' easy to follow flow.
-- **Guided user experience** Providing kernel selection, Linux &/or BSD, Guided best practice in file creation, manipulation, security & maintenance along with desktop settings-long term, will improve the entire UNIX-Like experience for coders, sysadmin & users alike. 
+- **Guided user experience** Providing kernel selection, Linux &/or BSD, Guided best practice in file creation, manipulation, security & maintenance along with desktop settings-long term, could improve the entire UNIX-Like experience for coders, sysadmin & users alike. 
 - **System security** zBoots main branch to be downloaded prior to operating systems, allowing an immutable fall back, with files & settings intact. Operating systemn, Kernals & desktop environments to be made down or side loadable, searchable and installable from within zBoots UI. All system operations do so in levels above zBoot with little to no access to zBoot, providing an immutable isolation layer & multiplying your security exponentially     
 - **Encouraging secure partitioning** as the standard to protect user data loss in the event of system crashes.
 - **Eliminating password fatigue** by leveraging cryptographically secured pysical USB keys like YubiKey below the operating system level, for full drive by drive disk encryption & site by site integration, with passwords managed throughout the entire uptime, when r,oved, their entire system will be encrypted.  
