@@ -39,11 +39,9 @@ while we should keep it to mostly text, distro logo's could be used.
 Same flow as the terminal file managers, Ranger & yazi etc,
 This will make it remote controlable for use in TV's as well.
 
-for wearable screens to be useful, they need to last time!
-With your CPU & GPU from home computer doing the heavy lifting,
-glasses running ghostty in zBoot could potentially be the
-answer for text based comms. We may still need to add wayland
-for a GUI, "though have you tried 'Brow6el'?"
+for wearable screens to be useful, they need to last time! Linked to your home PC with GPU doing the heavy lifting,
+glasses running ghostty in zBoot could potentially be the answer for text based comms. 
+We may need to add include wayland for GUI things on mobile devices, "though have you tried 'Brow6el'?"
 
 
 possibly layouts:
