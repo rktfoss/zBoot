@@ -66,9 +66,11 @@ zigboot/
 │   ├── net/                 ## Networking
 │   │   ├── quic.zig          # HTTP/3 (QUIC) client
 │   │   ├── dhcp.zig          # DHCP client
-│   │   ├── dhcp.zig          # DHCP client
-│   │   └── tftp.zig          # TFTP client
-│   │   └── tftp.zig          # TFTP client
+│   │   ├── dhcps.zig         # DHCP server
+│   │   ├── tftp.zig          # TFTP client
+│   │   ├── vpnc.zig          # VPN client
+│   │   ├── vpns.zig          # VPN server
+│   │   └── ftps.zig          # File server
 │   │
 │   ├── fs/                  ## Filesystem support
 │   │   ├── fat32.zig         # FAT32 reader
