@@ -2,7 +2,7 @@
 
 'zBoot' short for 'Zig Boot' is a Proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible** without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd does a great job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
 
-for wearable screens to be useful, they need to last time! Linked to your home PC with GPU doing the heavy lifting, glasses running ghostty in zBoot could potentially be the
+For wearable screens to be useful, they need to last time! Linked to your home PC with GPU doing the heavy lifting, glasses running ghostty in zBoot could potentially be the
 answer for text based comms. We may need to add include wayland for GUI things for mobile devices, "though have you tried 'Brow6el'?"
 
 zBoot aims to provide a **better default experience** by:
