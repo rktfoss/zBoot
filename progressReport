@@ -36,26 +36,36 @@ keeping all files & folder in alphabetical order & using a large nerdish style f
 Once an OS is installed, that becomes the focued panel at boot, multiple OS's listed in alphabetical. 
 while we should keep it to mostly text, distro logo's could be used.    
 
+Same flow as the terminal file managers, Ranger & yazi etc,
+This will make it remote controlable for use in TV's as well.
+
+for wearable screens to be useful, they need to last time!
+With your CPU & GPU from home computer doing the heavy lifting,
+glasses running ghostty in zBoot could potentially be the
+answer for text based comms. We may still need to add wayland
+for a GUI, "though have you tried 'Brow6el'?"
+
+
 possibly layouts:
 
 
 First Boot
 ______________________________________________________
-
+               * Welcome to zBoot *
 ~                   
 
 
-* set master pw &/or insert FIDO2 key 'if available' *         
+      * set master pw &/or insert FIDO2 key *         
 
                     Add User                 
                      Drives                      
                      Drivers                     
-                      keys                       
+                   FIDO2 keys                       
 ______________________________________________________
 
 
 
-if key available & root passwd correct
+Root passwd correct & key inserted "if set" 
 _______________________________________________________
                     unlocked
 ~                   
@@ -74,7 +84,7 @@ ______________________________________________________
 
 Standard "Home" view
 ______________________________________________________
-                      *home*
+                       home
 * Tools *
 
 
@@ -92,7 +102,7 @@ ______________________________________________________
 Post install -  'autostarts most recently used distro in
 4sec by default unless user moves focus' 
 _______________________________________________________
-* home *
+* home *               Alice 
 
                     * Arch BTW *          * install *
                         BSD                   new
