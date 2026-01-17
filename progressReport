@@ -2,6 +2,15 @@
 ---------------------------------- **keep above this line** ----------------------------------
 
 
+
+
+
+
+
+
+
+
+
 **BREAK**
 
 
@@ -36,8 +45,7 @@ ______________________________________________________
 ~                   
 
 
-
-            **requires root pw & key**         
+* set master pw &/or insert FIDO2 key 'if available' *         
 
                     Add User                 
                      Drives                      
@@ -53,7 +61,7 @@ _______________________________________________________
 ~                   
 
 
-                  **Add User**               **Alice**
+                  * Add User *               * Alice *
                      Drives                     Bob
                      Drivers                    Mary 
                    FIDO2 keys
@@ -67,10 +75,10 @@ ______________________________________________________
 Standard "Home" view
 ______________________________________________________
                       *home*
-**Tools**
+* Tools *
 
 
-                    **Alice**            ** Arch BTW **
+                    * Alice *             * Arch BTW *
                        Bob                    BSD
                        Mary                 CachyOS
                                             Settings
@@ -81,12 +89,13 @@ ______________________________________________________
 
 
 
-Post install -  'autostart last used distro in 8sec by default' 
+Post install -  'autostarts most recently used distro in
+4sec by default unless user moves focus' 
 _______________________________________________________
-**home**
+* home *
 
-                   ** Arch BTW **          **install**
-                        BSD                    new
+                    * Arch BTW *          * install *
+                        BSD                   new
                       CachyOS
                       Settings
 
@@ -94,7 +103,8 @@ _______________________________________________________
 
 _______________________________________________________
 
-
+Would be great if the user was able to switch in & 
+out of the boot loader while OS still in use.
 
 
 
