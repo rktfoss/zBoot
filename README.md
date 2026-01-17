@@ -34,8 +34,7 @@ buildr@zboot.org
 **for Manufacturers only**
 manu@zboot.org
 
-**for Donaters only**
-muchlove@zboot.org
+**muchlove@zboot.org**
 
 **Website & Foundation Details**
 the 'todo' list
