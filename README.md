@@ -49,7 +49,7 @@ the 'todo' list
 
 # Phase 1: Development Environment Setup
 
-## **1. Project Structure**
+## **1. Project Structure-"soFar"**
 ```
 zigboot/
 ├── src/
@@ -77,10 +77,13 @@ zigboot/
 │   ├── crypto/              ## Cryptography
 │   │   ├── sha256.zig        # SHA-256
 │   │   └── rsa.zig           # RSA (for signatures)
-│   │   └── ed21829.zig       # ed21829 (for signatures)
+│   │   └── ed25519.zig       # ed25519 (for signatures)
 │   └── configs/             ## Board-specific configs
-│       ├── rpi4.zig          # Raspberry Pi 4
+│       ├── x86.zig           # X86
+│       └── arm.zig           # ARM
 │       └── hifive.zig        # SiFive HiFive
+│       └── snapdragon.zig    # snapdragon
+│ 
 ├── build.zig                 # Build system
 └── README.md
 ```
