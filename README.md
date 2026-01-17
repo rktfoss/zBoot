@@ -50,24 +50,30 @@ the 'todo' list
 # Phase 1: Development Environment Setup
 
 
-1. **Simple Project Structure - will evolve**
-   ```
-   boot-manager/
-   ├── src/
-   │   ├── main.zig
-   │   ├── hardware/
-   │   ├── drivers/
-   │   ├── network/
-   │   ├── bluetooth/
-   │   ├── ui/
-   │   └── auth/
-   ├── build.zig
-   ├── config/
-   │   └── default.cfg
-   └── docs/
-   ```
+1. **Project Structure - will evolve**
 
-2. **Create build.zig**
+zigboot/
+├── src/
+│   ├── main.zig          # Entry point
+│   ├── hardware/         # SoC-specific drivers
+│   │   ├── uart.zig      # UART driver (comptime-generated)
+│   │   ├── mmio.zig      # Memory-mapped I/O
+│   │   └── gpio.zig      # GPIO control
+│   ├── boot/             # Boot protocols
+│   │   ├── fdt.zig       # Flattened Device Tree
+│   │   ├── linux.zig     # Linux boot protocol
+│   │   └── elf.zig       # ELF loader
+│   ├── fs/               # Filesystem support
+│   │   ├── fat32.zig     # FAT32 reader
+│   │   └── ext4.zig      # Ext4 reader (optional)
+│   └── lib/              # Utility functions
+│       ├── alloc.zig     # Custom allocator
+│       └── panic.zig     # Panic handler
+├── build.zig             # Build system
+└── configs/              # Board-specific configs
+    ├── rpi4.zig          # Raspberry Pi 4
+    └── hifive.zig        # SiFive HiFive
+
 
 
 **Phase 2: Core System Implementation**
