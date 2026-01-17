@@ -35,9 +35,9 @@ zigboot/
 │   ├── net/                 ## Networking
 │   │   ├── quic.zig          # HTTP/3 (QUIC) client
 │   │   ├── dhcp.zig          # DHCP client
-│   │   ├── tftp.zig          # DHCP server
+│   │   ├── dhcps.zig         # DHCP server
 │   │   ├── tftp.zig          # TFTP client
-│   │   ├── vpnc.zig          # VPN client
+│   │   ├── vpn.zig           # VPN client
 │   │   ├── vpns.zig          # VPN server
 │   │   └── ftps.zig          # File server
 │   │
