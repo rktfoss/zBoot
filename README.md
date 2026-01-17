@@ -52,6 +52,8 @@ the 'todo' list
 
 1. **Project Structure - will evolve**
 
+___   
+///
 zigboot/
 ├── src/
 │   ├── main.zig          # Entry point
@@ -73,8 +75,8 @@ zigboot/
 └── configs/              # Board-specific configs
     ├── rpi4.zig          # Raspberry Pi 4
     └── hifive.zig        # SiFive HiFive
-
-
+///
+___
 
 **Phase 2: Core System Implementation**
 
