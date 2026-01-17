@@ -50,10 +50,8 @@ the 'todo' list
 # Phase 1: Development Environment Setup
 
 
-1. **Project Structure - will evolve**
-
-___   
-///
+## **1. Basic Project Structure**
+```
 zigboot/
 ├── src/
 │   ├── main.zig          # Entry point
@@ -75,8 +73,7 @@ zigboot/
 └── configs/              # Board-specific configs
     ├── rpi4.zig          # Raspberry Pi 4
     └── hifive.zig        # SiFive HiFive
-///
-___
+```
 
 **Phase 2: Core System Implementation**
 
