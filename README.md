@@ -62,40 +62,9 @@ the 'todo' list
    ```
 
 2. **Create build.zig**
-   ```zig
-   const std = @import("std");
 
-   pub fn build(b: *std.Build) void {
-       const target = b.standardTargetOptions(.{});
-       const optimize = b.standardOptimizeOption(.{});
 
-       const exe = b.addExecutable(.{
-           .name = "boot-manager",
-           .root_source_file = .{ .path = "src/main.zig" },
-           .target = target,
-           .optimize = optimize,
-       });
-
-       // Add dependencies here as needed
-       exe.linkLibC();
-       exe.linkSystemLibrary("yubikey"); // Example for YubiKey
-       exe.linkSystemLibrary("bluetooth"); // Example for Bluetooth
-
-       b.installArtifact(exe);
-
-       const run_cmd = b.addRunArtifact(exe);
-       run_cmd.step.dependOn(b.getInstallStep());
-
-       if (b.args) |args| {
-           run_cmd.addArgs(args);
-       }
-
-       const run_step = b.step("run", "Run the boot manager");
-       run_step.dependOn(&run_cmd.step);
-   }
-   ```
-
-## Phase 2: Core System Implementation
+**Phase 2: Core System Implementation**
 
 1. **Implement Basic Boot Manager Structure**
    - Create `src/main.zig` with the core framework
@@ -112,116 +81,48 @@ the 'todo' list
    - Implement basic driver interface
    - Add driver dependency resolution
 
-## Phase 3: Network Stack Implementation
+## Phase 3: Network Stack Implementation**
 
 1. **Network Interface Detection**
-   ```zig
-   // src/network/detection.zig
-   pub fn detectInterfaces() ![]NetworkInterface {
-       // Implementation using PCI/USB detection
-   }
-   ```
+
 
 2. **DHCP Client**
-   ```zig
-   // src/network/dhcp.zig
-   pub fn startDHCP(interface: NetworkInterface) !void {
-       // DHCP client implementation
-   }
-   ```
+
 
 3. **Static IP Configuration**
-   ```zig
-   // src/network/static.zig
-   pub fn configureStatic(
-       interface: NetworkInterface,
-       ip: []const u8,
-       netmask: []const u8,
-       gateway: []const u8,
-   ) !void {
-       // Static configuration implementation
-   }
-   ```
+
 
 ## Phase 4: Bluetooth Support
 
 1. **Bluetooth Controller Initialization**
-   ```zig
-   // src/bluetooth/controller.zig
-   pub fn initialize() !BluetoothController {
-       // Controller initialization
-   }
-   ```
+ 
 
 2. **Device Management**
-   ```zig
-   // src/bluetooth/devices.zig
-   pub fn discoverDevices() ![]BluetoothDevice {
-       // Device discovery
-   }
 
-   pub fn pairDevice(device: BluetoothDevice) !void {
-       // Pairing implementation
-   }
-   ```
 
 ## Phase 5: User Interface with Ghostty
 
 1. **Ghostty Integration**
-   ```zig
-   // src/ui/terminal.zig
-   pub fn initGhostty() !Ghostty {
-       // Initialize Ghostty terminal
-   }
 
-   pub fn applyTheme(ghostty: *Ghostty, theme: ThemeConfig) !void {
-       // Apply theme settings
-   }
-   ```
 
 2. **Menu System**
-   ```zig
-   // src/ui/menu.zig
-   pub fn showMainMenu(bm: *BootManager) !MenuChoice {
-       // Display menu and get user choice
-   }
-   ```
+
 
 ## Phase 6: Kernel Loading and Handoff
 
 1. **Kernel Image Loading**
-   ```zig
-   // src/kernel/loader.zig
-   pub fn loadKernel(path: []const u8) !Kernel {
-       // Load kernel image
-   }
-   ```
+ 
 
 2. **Hardware State Preparation**
-   ```zig
-   // src/kernel/handoff.zig
-   pub fn prepareHardwareState(bm: *BootManager) !HardwareState {
-       // Collect all hardware information
-   }
-   ```
+ 
 
 3. **Control Transfer**
-   ```zig
-   // src/kernel/jump.zig
-   pub fn jumpToKernel(kernel: Kernel, state: HardwareState) !noret {
-       // Transfer control to kernel
-   }
-   ```
+
 
 ## Phase 7: Testing and Debugging
 
 1. **Unit Testing**
-   ```zig
-   // tests/hardware.zig
-   test "PCI detection" {
-       // Test PCI detection
-   }
-   ```
+
 
 2. **Integration Testing**
    - Test in QEMU with virtual hardware
@@ -235,9 +136,7 @@ the 'todo' list
 ## Phase 8: Deployment
 
 1. **Build for Target Platform**
-   ```bash
-   zig build -Dtarget=x86_64-linux -Doptimize=ReleaseSafe
-   ```
+ 
 
 2. **Create Bootable Image**
    - Combine with GRUB or other bootloader
