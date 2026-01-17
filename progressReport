@@ -132,23 +132,42 @@ codeIncluded: no
 
  ** Simply project structure "will grow & change over time" **
 
+zigboot/
+├── src/
+│   ├── main.zig             ## Entry point
+│   ├── core/                ## Core bootloader
+│   │   ├── boot.zig          # Boot protocols (Linux, UEFI)
+│   │   ├── panic.zig         # Panic handler
+│   │   └── alloc.zig         # Memory allocator
+│   ├── hardware/            ## Hardware abstraction
+│   │   ├── tpm2.zig          # TPM 2.0 driver
+│   │   ├── fido2.zig         # FIDO2 client
+│   │   ├── uart.zig          # UART driver
+│   │   └── mmio.zig          # Memory-mapped I/O
+│   ├── net/                 ## Networking
+│   │   ├── quic.zig          # HTTP/3 (QUIC) client
+│   │   ├── dhcp.zig          # DHCP client
+│   │   └── tftp.zig          # TFTP client
+│   ├── fs/                  ## Filesystem support
+│   │   ├── fat32.zig         # FAT32 reader
+│   │   └── ext4.zig          # Ext4 reader
+│   │   ├── Btfs.zig          # Btfs reader
+│   │   └── zfs.zig           # zfs reader (default)
+│   │   ├── exFat.zig         # exFAT32 reader
+│   │   └── ntfs.zig          # NTFS reader
+│   ├── crypto/              ## Cryptography
+│   │   ├── sha256.zig        # SHA-256
+│   │   └── rsa.zig           # RSA (for signatures)
+│   │   └── ed25519.zig       # ed25519 (for signatures)
+│   └── configs/             ## Board-specific configs
+│       ├── x86.zig           # X86
+│       └── arm.zig           # ARM
+│       └── hifive.zig        # SiFive HiFive
+│       └── snapdragon.zig    # snapdragon
+│ 
+├── build.zig                 # Build system
+└── README.md
+  
 
-   zBoot/                             
-	  └── src/                        
-	      ├── main.zig/               
-		  ├── hardware/ 
-		  ├── auth/       
-	      │    ├── drivers/   
-          │    ├── network/	
-          │    ├── bluetooth/
-          │    └── ui/
-          │   
-    	  ├── build.zig
-		  ├── config/
-		  │   └── user.cfg
-		  │   └── default.cfg			
-          │
-          └── docs/
-	    
 
 
