@@ -28,13 +28,14 @@ Due to the overheads & effort involved in conducting our testing, all machines s
 
 Contact details 
 
-**for Contributers only**
+**for Contributers**
 buildr@zboot.org 
 
-**for Manufacturers only**
+**for Manufacturers**
 manu@zboot.org
 
-**muchlove@zboot.org**
+**Contact Us**
+muchlove@zboot.org
 
 **Website & Foundation Details**
 the 'todo' list
