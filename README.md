@@ -11,7 +11,7 @@ zBoot aims to provide a **better default experience** by:
 - **Aiming to replace display managers** "long term goal", streamlining the boot-to-desktop process allowing kernal developers to focus on their kernals & designers to focus on designing while we take care of the less glamorous side.
 - **moving towards a full featured system** "zBoot aims to grow into a fully fledged 'build your own system'", in saying that, zBoot MUST always remain available in a 'server edition' for industrial puropses & those requiring a micro loader/manager.     
 
-Inspired by **Andrew Kelley’s work on Zig** ( And getting down low and modernising, along with his "making Code you love" attitude ) and **Mitchell Hashimoto’s Ghostty** zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
+Inspired by **Andrew Kelley’s work on Zig** and **Mitchell Hashimoto’s Ghostty** zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
 
 While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to provide a solid booting experience including "server standard reliability" with the addition of **security & userbility features and seemless system prep**—without compromise.
 
