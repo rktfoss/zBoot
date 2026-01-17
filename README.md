@@ -49,7 +49,7 @@ the 'todo' list
 # Phase 1: Development Environment Setup
 
 
-1. **Set Up Project Structure**
+1. **Simple Project Structure - will evolve**
    ```
    boot-manager/
    ├── src/
