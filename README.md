@@ -19,7 +19,7 @@ Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders 
 
 - **zBoot is NOT assoiated with the creators of Zig, ziglang.org or entities betrothed within the Zig Foundation.**
   
-- **"Not saying we don't want to be, just don't blame Zig if 'zBoot' breaks your system, that will be on us !"**
+- **"Not saying we don't want to be", just don't blame Zig if 'zBoot' breaks your system, that will be on us !**
 
 **Manufacturers**-Our testing is restricted to the hardward we have access too. 
 
