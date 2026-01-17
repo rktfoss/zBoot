@@ -49,31 +49,42 @@ the 'todo' list
 
 # Phase 1: Development Environment Setup
 
-
-## **1. Basic Project Structure**
+## **1. Project Structure**
 ```
 zigboot/
 ├── src/
-│   ├── main.zig          # Entry point
-│   ├── hardware/         # SoC-specific drivers
-│   │   ├── uart.zig      # UART driver (comptime-generated)
-│   │   ├── mmio.zig      # Memory-mapped I/O
-│   │   └── gpio.zig      # GPIO control
-│   ├── boot/             # Boot protocols
-│   │   ├── fdt.zig       # Flattened Device Tree
-│   │   ├── linux.zig     # Linux boot protocol
-│   │   └── elf.zig       # ELF loader
-│   ├── fs/               # Filesystem support
-│   │   ├── fat32.zig     # FAT32 reader
-│   │   └── ext4.zig      # Ext4 reader (optional)
-│   └── lib/              # Utility functions
-│       ├── alloc.zig     # Custom allocator
-│       └── panic.zig     # Panic handler
-├── build.zig             # Build system
-└── configs/              # Board-specific configs
-    ├── rpi4.zig          # Raspberry Pi 4
-    └── hifive.zig        # SiFive HiFive
+│   ├── main.zig             ## Entry point
+│   ├── core/                ## Core bootloader
+│   │   ├── boot.zig          # Boot protocols (Linux, UEFI)
+│   │   ├── panic.zig         # Panic handler
+│   │   └── alloc.zig         # Memory allocator
+│   ├── hardware/            ## Hardware abstraction
+│   │   ├── tpm2.zig          # TPM 2.0 driver
+│   │   ├── fido2.zig         # FIDO2 client
+│   │   ├── uart.zig          # UART driver
+│   │   └── mmio.zig          # Memory-mapped I/O
+│   ├── net/                 ## Networking
+│   │   ├── quic.zig          # HTTP/3 (QUIC) client
+│   │   ├── dhcp.zig          # DHCP client
+│   │   └── tftp.zig          # TFTP client
+│   ├── fs/                  ## Filesystem support
+│   │   ├── fat32.zig         # FAT32 reader
+│   │   └── ext4.zig          # Ext4 reader
+│   │   ├── Btfs.zig          # Btfs reader
+│   │   └── zfs.zig           # zfs reader (default)
+│   │   ├── fat32.zig         # FAT32 reader
+│   │   └── ext4.zig          # exFat reader
+│   ├── crypto/              ## Cryptography
+│   │   ├── sha256.zig        # SHA-256
+│   │   └── rsa.zig           # RSA (for signatures)
+│   │   └── ed21829.zig       # ed21829 (for signatures)
+│   └── configs/             ## Board-specific configs
+│       ├── rpi4.zig          # Raspberry Pi 4
+│       └── hifive.zig        # SiFive HiFive
+├── build.zig                 # Build system
+└── README.md
 ```
+
 
 **Phase 2: Core System Implementation**
 
