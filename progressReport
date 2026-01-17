@@ -2,9 +2,103 @@
 ---------------------------------- **keep above this line** ----------------------------------
 
 
+**BREAK**
+
+
+**progressReport: 2026/1/17**
+author: brawijaya
+codeIncluded: no
+
+TUI:
+
+TUI needs to be clean, simple & flowing throughout.
+To do this I propose a 25-50-25 split of the screen, with the centre always the focus.
+After many hours in terminal file managers they all have an awkward display at some stage in the flow
+where if you look at the screen there is no clear focus "it's messy" often due to the justifying to the left
+of the central panel. 
+
+By always centering the text in each panel, making the center panel at least 50% of the screen & the center panels main focus
+about 1/3 from the top with either side somewhat transparent 60-70%ish, we should have eliminating the messiness. 
+At the end of each path, the centre can become the right 75% of screenspace.
+The left must always colapse down to 'only' the folder you are in to keep it clean.
+
+keeping all files & folder in alphabetical order & using a large nerdish style font could give it a nice feel 
+
+Once an OS is installed, that becomes the focued panel at boot, multiple OS's listed in alphabetical. 
+while we should keep it to mostly text, distro logo's could be used.    
+
+possibly layouts:
+
+
+First Boot
+______________________________________________________
+
+~                   
 
 
 
+            **requires root pw & key**         
+
+                    Add User                 
+                     Drives                      
+                     Drivers                     
+                      keys                       
+______________________________________________________
+
+
+
+if key available & root passwd correct
+_______________________________________________________
+                    unlocked
+~                   
+
+
+                  **Add User**               **Alice**
+                     Drives                     Bob
+                     Drivers                    Mary 
+                      keys
+                   Networking
+                      Raid
+                    Terminal 
+______________________________________________________
+
+
+
+Standard "Home" view
+______________________________________________________
+                      *home*
+**Tools**
+
+
+                    **Alice**            ** Arch BTW **
+                       Bob                    BSD
+                       Mary                 CachyOS
+                                            Settings
+
+______________________________________________________
+
+
+
+
+
+Post install -  'autostart last used distro in 8sec by default' 
+_______________________________________________________
+**home**
+
+                   ** Arch BTW **          **install**
+                        BSD                    new
+                      CachyOS
+                      Settings
+
+
+
+_______________________________________________________
+
+
+
+
+
+**BREAK**
 
 
 **progressReport: 2026/1/16**
