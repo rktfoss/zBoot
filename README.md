@@ -79,10 +79,21 @@ zigboot/
 │   │   └── rsa.zig           # RSA (for signatures)
 │   │   └── ed25519.zig       # ed25519 (for signatures)
 │   └── configs/             ## Board-specific configs
-│       ├── x86.zig           # X86
-│       └── arm.zig           # ARM
-│       └── hifive.zig        # SiFive HiFive
-│       └── snapdragon.zig    # snapdragon
+│   │   ├── x86.zig           # X86
+│   │   └── arm.zig           # ARM
+│   │   └── hifive.zig        # SiFive HiFive
+│   │   └── snapdragon.zig    # snapdragon
+│   └── user/                ## User Settings
+│   │   ├── fonts.zig         # User Fonts
+│   │   ├── screens.zig       # User ScreenSettings
+│   │   └── themes.zig        # User Themes
+│   │   ├── files.zig         # User File System
+│   │   ├── kernals.zig       # User Kernals
+│   │   └── distros.zig       # User Distrobutions 
+│   │   └── wms.zig           # User Window Managers       
+│   └── terminal/            ## System Terminal
+│       └── ghostty.zig       # SHA-256
+│   
 │ 
 ├── build.zig                 # Build system
 └── README.md
