@@ -72,8 +72,8 @@ zigboot/
 │   │   └── ext4.zig          # Ext4 reader
 │   │   ├── Btfs.zig          # Btfs reader
 │   │   └── zfs.zig           # zfs reader (default)
-│   │   ├── fat32.zig         # FAT32 reader
-│   │   └── ext4.zig          # exFat reader
+│   │   ├── exFat.zig         # exFAT32 reader
+│   │   └── ntfs.zig          # NTFS reader
 │   ├── crypto/              ## Cryptography
 │   │   ├── sha256.zig        # SHA-256
 │   │   └── rsa.zig           # RSA (for signatures)
