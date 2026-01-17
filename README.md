@@ -49,7 +49,7 @@ the 'todo' list
 
 # Phase 1: Development Environment Setup
 
-## **1. Project Structure-"soFar"**
+## **1. Basic Project Structure - "this will grow"**
 ```
 zigboot/
 ├── src/
