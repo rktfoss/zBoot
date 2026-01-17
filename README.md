@@ -2,10 +2,8 @@
 
 'zBoot' short for 'Zig Boot' is a Proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible** without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd does a great job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
 
-For wearable screens to be useful, they need to last time! Linked to your home PC with GPU doing the heavy lifting, glasses running ghostty in zBoot could potentially be the
-answer for text based comms. We may need to add include wayland for GUI support on mobile devices, "though have you tried 'Brow6el'?"
-
 zBoot aims to provide a **better default experience** by:
+- **A live environment to fall back into** In the event of a crash, you'll have a full access to all files & a network connection to search and replace corrupted files in the OS via terminal. 
 - **Detecting hardware** providing a complete system map & preloaded drivers to the operating systems in a 'well documented' easy to follow flow.
 - **Guided user experience** Providing kernel selection, Linux &/or BSD, Guided best practice in file creation, manipulation, security & maintenance along with desktop settings-long term, could improve the entire UNIX-Like experience for coders, sysadmin & users alike. 
 - **System security** zBoots main branch to be downloaded prior to operating systems, allowing an immutable fall back, with files & settings intact. Operating systemn, Kernals & desktop environments to be made down or side loadable, searchable and installable from within zBoots UI. All system operations do so in levels above zBoot with little to no access to zBoot, providing an immutable isolation layer & multiplying your security exponentially     
@@ -13,6 +11,9 @@ zBoot aims to provide a **better default experience** by:
 - **Eliminating password fatigue** by leveraging cryptographically secured pysical USB keys like YubiKey below the operating system level with full drive by drive disk encryption & site by site integration, with passwords managed throughout the entire uptime, when removed the entire system is encrypted.   
 - **Aiming to replace display managers** "long term goal", streamlining the boot-to-desktop process allowing kernal developers to focus on their kernals & designers to focus on designing while we take care of the less glamorous side.
 - **moving towards a full featured system** "zBoot aims to grow into a fully fledged 'build your own system'", in saying that, zBoot MUST always remain available in a 'server edition' for industrial puropses & those requiring a micro loader/manager.     
+
+For wearable screens to be useful, they need to last time! Linked to your home PC with GPU doing the heavy lifting, glasses running ghostty in zBoot could potentially be the
+answer for text based comms. We may need to add include wayland for GUI support on mobile devices, "though have you tried 'Brow6el'?"
 
 Inspired by **Andrew Kelley’s work on Zig** and **Mitchell Hashimoto’s Ghostty** zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
 
