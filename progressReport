@@ -2,6 +2,45 @@
 ---------------------------------- **keep above this line** ----------------------------------
 
 
+**progressReport: 2026/1/19**
+author: brawijaya
+codeIncluded: no
+
+updated the framework to include /blocks, /server & some raid.zigs
+have some .zigs started, will upload shortly.
+
+
+
+zigboot/
+├── src/
+│   ├── raid/                  # RAID Controller
+│   │   ├── raid0.zig          # Striping
+│   │   ├── raid1.zig          # Mirroring
+│   │   ├── raid5.zig          # Distributed Parity
+│   │   ├── raid6.zig          # Dual Parity
+│   │   ├── raid10.zig         # Striped Mirrors
+│   │   └── smart.zig          # Drive Health Monitoring
+│   ├── fs/                    # Filesystem Support
+│   │   ├── ext4.zig           # Ext4 (with journaling)
+│   │   ├── btrfs.zig          # Btrfs (CoW, snapshots)
+│   │   ├── zfs.zig            # ZFS (RAID-Z, checksums)
+│   │   ├── ntfs.zig           # NTFS (Windows)
+│   │   ├── fat32.zig          # FAT32 (Legacy)
+│   │   └── exfat.zig          # exFAT (Large files)
+│   ├── block/                 # Block Device Layer
+│   │   ├── nvme.zig           # NVMe SSD
+│   │   ├── sata.zig           # SATA HDD/SSD
+│   │   ├── scsi.zig           # SCSI Enterprise
+│   │   └── virtio.zig         # Virtualization
+│   └── server/                # Server Farm Features
+│       ├── hotplug.zig        # Hot-Swap Support
+│       ├── monitoring.zig     # Health Monitoring
+│       └── api.zig            # Management API
+
+
+
+
+
 
 
 **progressReport: 2026/1/18**
