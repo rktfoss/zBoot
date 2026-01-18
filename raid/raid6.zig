@@ -1,4 +1,5 @@
 //DO NOT USE, for playing around with only
+//raid6 dual parity
 
 
 ```zig
