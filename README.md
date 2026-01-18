@@ -1,10 +1,10 @@
 # zBoot - 0.015% complete
  
- **About**
+ **about**
 
-**'zBoot'** short for 'Zig Boot' is a proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible** without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in zBoot. While rEFInd & u-boot do a great job where the others fail, zBoot is aiming at taking the booting experience to a whole new level.
+**'zBoot'** short for **'Zig Boot'** is a proposed Unix Boot Control System written in Zig, designed to be **fast, secure, and flexible** without forcing trade-offs between functionality, security and reliability. While existing bootmanager/loaders like GRUB and systemd-boot serve their purpose, what they lack is an easy to use implimentations of modern security features, hardware-aware system prep, and seamless integration with encrypted systems that we aim to provide in **zBoot.** While rEFInd & u-boot do a great job where the others fail, **zBoot** is aiming at taking the booting experience to a whole new level.
 
-zBoot aims to provide a **better default experience** by:
+**zBoot** aims to provide a **better default experience** by:
 - **A live environment to fall back into** In the event of a crash, you'll have a full access to all files & a network connection to search and replace corrupted files via **ghostty**. 
 - **Detecting hardware** providing a complete system map & preloaded drivers to the operating systems in a 'well documented' easy to follow flow.
 - **Guided user experience** Providing kernel selection, Linux &/or BSD, Guided best practice in file creation, manipulation, security & maintenance along with desktop settings-long term, could improve the entire UNIX-Like experience for coders, sysadmin & users alike. 
@@ -19,9 +19,9 @@ answer for text based comms. We may need to add include wayland for GUI support 
 
 Inspired by **Andrew Kelley’s work on Zig** and **Mitchell Hashimoto’s Ghostty** zBoot seeks to modernise the boot process without sacrificing the stability we rely on.
 
-While not claiming to be the *fastest* or *most feature-rich* , zBoot aims first & foremost to provide a solid booting experience including "server standard reliability" with the addition of **security & userbility features and seemless system prep**—without compromise.
+While not claiming to be the *fastest* or *most feature-rich* , **zBoot** aims first & foremost to provide a solid booting experience including "server standard reliability" with the addition of **security & userbility features and seemless system prep**—without compromise.
 
-Our goal is to make zBoot a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security, recovery & userbility without breaking existing workflows.
+Our goal is to make **zBoot** a **drop-in replacement** for traditional bootloaders while introducing opt-in features that improve security, recovery & userbility without breaking existing workflows.
 
 - **zBoot is NOT assoiated with the creators of Zig, ziglang.org or entities betrothed within the Zig Foundation.**
   
