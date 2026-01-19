@@ -1,4 +1,4 @@
-//DO NOT USE, to playing with only
+//DO NOT USE, for play only,
 
 
 ```zig
