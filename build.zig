@@ -308,7 +308,7 @@ fn generateCryptoKeys(b: *Builder) !*std.build.Lib {
 }
 
 fn generateRsaKeyPair(b: *Builder, bit_length: u16) ![]const u8 {
-    // in a real implementation, you would use proper cryptographic functions
+    // in the real implementation, we will use proper cryptographic functions
     // this is a simplified example
     var rng = std.crypto.random.DefaultPrng.init(
         try std.crypto.random.DefaultPrng.seedFrom(os.getpid() ++ std.time.timestamp()),
@@ -328,7 +328,7 @@ fn generateRsaKeyPair(b: *Builder, bit_length: u16) ![]const u8 {
 }
 
 fn generateEd25519KeyPair(b: *Builder) ![]const u8 {
-    // similar to RSA, but for ED25519
+    // for ED25519
     var rng = std.crypto.random.DefaultPrng.init(
         try std.crypto.random.DefaultPrng.seedFrom(os.getpid() ++ std.time.timestamp()),
     );
