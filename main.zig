@@ -1,5 +1,4 @@
-//DO NOT USE, for veiwing only,
-
+//DO NOT USE, for veiwing only, messed with lines " 376, 1017 Filesystems will try fix tomorrow"
 
 ```zig
 const std = @import("std");
@@ -375,7 +374,10 @@ fn checkSecurityRequirements() void {
 fn initFilesystem() void {
     // initialize filesystem drivers
     fat32.init();
+    btrfs.init();
+    exfat.init();
     ext4.init();
+    ntfs.init();
     zfs.init();
 
     // mount filesystem images
@@ -388,6 +390,15 @@ fn initFilesystem() void {
     #ifdef X86
         if (!fat32.mountDisk(0)) {
             std.debug.print("Failed to mount FAT32 disk\n", .{});
+        }
+        if (!exfat.mountDisk(0)) {
+            std.debug.print("Failed to mount exFAT disk\n", .{});
+        }
+        if (!btrfs.mountDisk(0)) {
+            std.debug.print("Failed to mount btrfs disk\n", .{});
+        }
+        if (!ntfs.mountDisk(0)) {
+            std.debug.print("Failed to mount NTFS disk\n", .{});
         }
         if (!ext4.mountDisk(1)) {
             std.debug.print("Failed to mount ext4 disk\n", .{});
@@ -1031,6 +1042,21 @@ fn verifyFilesystem() void {
             tui.printAt(2, 3, "FAT32 disk: OK", .{});
         } else {
             tui.printAt(2, 3, "FAT32 disk: CORRUPT", .{});
+        }
+        if (exfat.verify(0)) {
+            tui.printAt(2, 3, "exFAT disk: OK", .{});
+        } else {
+            tui.printAt(2, 3, "exFAT disk: CORRUPT", .{});
+        }
+        if (btrfs.verify(0)) {
+            tui.printAt(2, 3, "btrfs disk: OK", .{});
+        } else {
+            tui.printAt(2, 3, "btrfs disk: CORRUPT", .{});
+        }
+        if (NTFS.verify(0)) {
+            tui.printAt(2, 3, "NTFS disk: OK", .{});
+        } else {
+            tui.printAt(2, 3, "NTFS disk: CORRUPT", .{});
         }
 
         if (ext4.verify(1)) {
