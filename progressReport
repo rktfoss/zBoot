@@ -5,12 +5,13 @@
 
 **progressReport: 2026/1/20**
 author: brawijaya
-codeIncluded: build.zig "begining of"
+codeIncluded: build.zig & main.zig "begining of"
 
-Made a start on the build.zig.
+made a start on the build & main .zig files. 
+trying to keep it as modular as possible ! 
 something pleasing on the eye about zig code ?
 
-Thinking long term, if zBoot becomes as usefull as I hope it will,
+thinking long term, if zBoot becomes as usefull as I hope it will,
 instead of coming here and going through one of many variations,
 or a loaded build "that deletes all the drivers not in use after initiation"
 it could be useful & kinda fun to have a wedsite, where you essentially build
