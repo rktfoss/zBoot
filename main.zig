@@ -10,7 +10,7 @@ const crypto = std.crypto;
 const fs = std.fs;
 const time = std.time;
 
-// Import our generated assets
+// import our generated assets
 const config = @import("config");
 const fonts = @import("fonts");
 const keys = @import("keys");
@@ -19,44 +19,44 @@ const fs_images = @import("fs_images");
 const net_config = @import("net_config");
 const themes = @import("themes");
 
-// Import core modules
+// import core modules
 const boot = @import("core/boot.zig");
 const panic = @import("core/panic.zig");
 const alloc = @import("core/alloc.zig");
 
-// Import hardware modules
+// import hardware modules
 const tpm2 = @import("hardware/tpm2.zig");
 const uart = @import("hardware/uart.zig");
 const mmio = @import("hardware/mmio.zig");
 const acpi = @import("hardware/acpi.zig");
 const pci = @import("hardware/pci.zig");
 
-// Import filesystem modules
+// import filesystem modules
 const fat32 = @import("fs/fat32.zig");
 const ext4 = @import("fs/ext4.zig");
 const zfs = @import("fs/zfs.zig");
 
-// Import crypto modules
+// import crypto modules
 const sha256 = @import("crypto/sha256.zig");
 const rsa = @import("crypto/rsa.zig");
 const ed25519 = @import("crypto/ed25519.zig");
 
-// Import network modules
+// import network modules
 const quic = @import("net/quic.zig");
 const dhcp = @import("net/dhcp.zig");
 const tftp = @import("net/tftp.zig");
 const http = @import("net/http.zig");
 const pxe = @import("net/pxe.zig");
 
-// Import user interface modules
+// import user interface modules
 const ghostty = @import("terminal/ghostty.zig");
 const tui = @import("zsets/ui.zig");
 
-// Global allocator
+// global allocator
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 const allocator = gpa.allocator();
 
-// Global state
+// global state
 var boot_config: BootConfig = undefined;
 var current_selection: usize = 0;
 var network_initialized: bool = false;
@@ -64,65 +64,65 @@ var secure_boot_enabled: bool = false;
 var tpm_available: bool = false;
 
 pub fn main() !void {
-    // Initialize the system
+    // initialize the system
     initSystem();
 
-    // Set up panic handler
+    // tet up panic handler
     panic.setHandler(customPanicHandler);
 
-    // Initialize hardware
+    // initialize hardware
     initHardware();
 
-    // Load configuration
+    // load configuration
     boot_config = loadConfiguration() catch |err| {
         panic.panic("Failed to load configuration", .{err});
     };
 
-    // Initialize filesystem
+    // initialize filesystem
     initFilesystem();
 
-    // Initialize network if needed
+    // initialize network if needed
     if (boot_config.network.dhcp_enabled ||
 boot_config.network.http_boot) {
         network_initialized = initNetwork();
     }
 
-    // Initialize user interface
+    // initialize user interface
     initUI();
 
-    // Check security requirements
+    // check security requirements
     checkSecurityRequirements();
 
-    // Main bootloader loop
+    // main bootloader loop
     runBootloader();
 }
 
 fn initSystem() void {
-    // Initialize memory allocator
+    // initialize memory allocator
     gpa = std.heap.GeneralPurposeAllocator(.{}){};
     const allocator = gpa.allocator();
 
-    // Set up memory protection if available
+    // set up memory protection if available
     #ifdef HAS_MPU
         mmio.setupMemoryProtection();
     #endif
 
-    // Initialize console
+    // initialize console
     uart.init(115200); // Standard baud rate
     std.debug.print("ZigBoot initializing...\n", .{});
 
-    // Initialize random number generator
+    // initialize random number generator
     crypto.random.setup();
 
-    // Initialize time
+    // initialize time
     time.init();
 }
 
 fn initHardware() void {
-    // Detect hardware platform
+    // detect hardware platform
     const platform = hw_config.detectPlatform();
 
-    // Initialize platform-specific hardware
+    // initialize platform-specific hardware
     switch (platform) {
         .x86 => {
             mmio.initX86();
@@ -143,16 +143,16 @@ fn initHardware() void {
         },
     }
 
-    // Initialize common hardware
+    // initialize common hardware
     uart.init(115200);
 }
 
 fn loadConfiguration() !BootConfig {
-    // Parse the embedded configuration
+    // parse the embedded configuration
     const config_data = config.getDefaultConfig();
     var config = try parseBootConfig(config_data);
 
-    // Try to load configuration from disk if available
+    // try to load configuration from disk if available
     if (fs.exists("zigboot/config.json")) {
         const disk_config = try fs.readFileAlloc(allocator,
 "zigboot/config.json", 4096);
@@ -160,15 +160,15 @@ fn loadConfiguration() !BootConfig {
 
         const disk_boot_config = try
 parseBootConfig(disk_config);
-        // Merge configurations
+        // merge configurations
 (disk config takes precedence)
         config = mergeConfigs(config, disk_boot_config);
     }
 
-    // Apply hardware-specific overrides
+    // apply hardware-specific overrides
     applyHardwareConfig(&config);
 
-    // Validate configuration
+    // validate configuration
     if (!validateConfig(&config)) {
         return error.ConfigurationError;
     }
@@ -181,7 +181,7 @@ fn parseBootConfig(data: []const u8) !BootConfig {
     defer arena.deinit();
     const allocator = arena.allocator();
 
-    // Parse JSON configuration
+    // parse JSON configuration
     const json_value = try json.parseFromSlice(
         json.Value,
         allocator,
@@ -189,7 +189,7 @@ fn parseBootConfig(data: []const u8) !BootConfig {
         .{ .allow_trailing_commas = true },
     );
 
-    // Extract configuration values
+    // extract configuration values
     var config = BootConfig{
         .boot = .{
             .timeout =
@@ -233,7 +233,7 @@ json_value.Object.get("debug").?.Object.get("recovery_mode").?.Boojson_value.Obj
         },
     };
 
-    // Parse boot entries
+    // parse boot entries
     if (json_value.Object.get("boot").?.Object.get("entries"))
 |entries| {
         for (entries.Array) |entry| {
@@ -269,7 +269,7 @@ false;
 
 fn mergeConfigs(base: BootConfig, override: BootConfig)
 BootConfig {
-    // Create a new config with override values where specified
+    // create a new config with override values where specified
     return .{
         .boot = .{
             .timeout = override.boot.timeout,
@@ -292,10 +292,10 @@ BootConfig {
 }
 
 fn applyHardwareConfig(config: *BootConfig) void {
-    // Get hardware-specific configuration
+    // get hardware-specific configuration
     const hw = hw_config.getConfig();
 
-    // Apply platform-specific defaults
+    // apply platform-specific defaults
     switch (hw.platform) {
         .x86 => {
             if (config.boot.timeout == 0) {
@@ -320,13 +320,13 @@ fn applyHardwareConfig(config: *BootConfig) void {
 }
 
 fn validateConfig(config: *BootConfig) bool {
-    // Validate boot entries
+    // validate boot entries
     if (config.boot.entries.items.len == 0) {
         std.debug.print("No boot entries configured\n", .{});
         return false;
     }
 
-    // Validate default entry exists
+    // validate default entry exists
     var found_default = false;
     for (config.boot.entries.items) |entry| {
         if (std.mem.eql(u8, entry.name,
@@ -341,13 +341,13 @@ config.boot.default_entry)) {
         return false;
     }
 
-    // Validate security settings
+    // validate security settings
     if (config.security.tpm_required && !tpm_available) {
         std.debug.print("TPM required but not available\n", .{});
         return false;
     }
 
-    // Validate network settings
+    // validate network settings
     if (config.boot.pxe_enabled && !config.network.dhcp_enabled)
 {
         std.debug.print("PXE enabled but DHCP disabled\n", .{});
@@ -370,18 +370,18 @@ fn checkSecurityRequirements() void {
 }
 
 fn initFilesystem() void {
-    // Initialize filesystem drivers
+    // initialize filesystem drivers
     fat32.init();
     ext4.init();
     zfs.init();
 
-    // Mount filesystem images
+    // mount filesystem images
     const fs_data = fs_images.getImage();
     if (!zfs.mount(fs_data)) {
         std.debug.print("Failed to mount ZFS image\n", .{});
     }
 
-    // Try to mount disk filesystems
+    // try to mount disk filesystems
     #ifdef X86
         if (!fat32.mountDisk(0)) {
             std.debug.print("Failed to mount FAT32 disk\n", .{});
@@ -393,18 +393,18 @@ fn initFilesystem() void {
 }
 
 fn initNetwork() bool {
-    // Initialize network stack
+    // initialize network stack
     if (!dhcp.init()) {
         std.debug.print("DHCP initialization failed\n", .{});
         return false;
     }
 
-    // Initialize network protocols
+    // initialize network protocols
     quic.init();
     tftp.init();
     http.init();
 
-    // Initialize PXE if enabled
+    // initialize PXE if enabled
     if (boot_config.boot.pxe_enabled) {
         if (!pxe.init()) {
             std.debug.print("PXE initialization failed\n", .{});
@@ -416,30 +416,30 @@ fn initNetwork() bool {
 }
 
 fn initUI() void {
-    // Initialize terminal
+    // initialize terminal
     ghostty.init();
 
-    // Load fonts
+    // load fonts
     const font_data = fonts.getFonts();
     if (!ghostty.loadFonts(font_data)) {
         std.debug.print("Font loading failed\n", .{});
     }
 
-    // Load themes
+    // load themes
     const theme_data = themes.getThemes();
     if (!tui.loadThemes(theme_data)) {
         std.debug.print("Theme loading failed\n", .{});
     }
 
-    // Initialize TUI
+    // initialize TUI
     tui.init();
 
-    // Set up UI components
+    // set up UI components
     setupUI();
 }
 
 fn setupUI() void {
-    // Create main window
+    // create main window
     tui.createWindow(.{
         .title = "ZigBoot",
         .x = 0,
@@ -448,7 +448,7 @@ fn setupUI() void {
         .height = 24,
     });
 
-    // Create boot menu
+    // create boot menu
     tui.createList(.{
         .id = "boot_menu",
         .x = 2,
@@ -459,7 +459,7 @@ fn setupUI() void {
         .selected = 0,
     });
 
-    // Create status bar
+    // create status bar
     tui.createStatusBar(.{
         .id = "status",
         .y = 22,
@@ -467,7 +467,7 @@ fn setupUI() void {
 command line",
     });
 
-    // Create help bar
+    // create help bar
     tui.createHelpBar(.{
         .id = "help",
         .y = 23,
@@ -476,7 +476,7 @@ command line",
 }
 
 fn runBootloader() !void {
-    // Display boot menu
+    // display boot menu
     displayBootMenu();
 
     // Wait for user input or timeout
@@ -485,18 +485,18 @@ catch |err| {
         panic.panic("Failed to get user selection", .{err});
     };
 
-    // Boot the selected entry
+    // boot the selected entry
     bootSelectedEntry(selection);
 }
 
 fn displayBootMenu() void {
-    // Clear screen
+    // clear screen
     tui.clear();
 
-    // Display header
+    // display header
     tui.printAt(2, 0, "ZigBoot v1.0 - Boot Menu", .{});
 
-    // Display boot entries
+    // display boot entries
     for (boot_config.boot.entries.items, 0..) |entry, i| {
         const prefix = if (std.mem.eql(u8, entry.name,
 boot_config.boot.default_entry)) "* " else "  ";
@@ -504,7 +504,7 @@ boot_config.boot.default_entry)) "* " else "  ";
 entry.name});
     }
 
-    // Display instructions
+    // display instructions
     tui.printAt(2, 20, "Use arrow keys to select, Enter to boot,
 'c' for command line", .{});
 }
@@ -513,7 +513,7 @@ fn waitForSelection(timeout: u32) !usize {
     const start_time = time.timestamp();
     current_selection = 0;
 
-    // Find default entry index
+    // find default entry index
     var default_index: usize = 0;
     for (boot_config.boot.entries.items, 0..) |entry, i| {
         if (std.mem.eql(u8, entry.name,
@@ -527,13 +527,13 @@ boot_config.boot.default_entry)) {
     updateSelectionDisplay(current_selection);
 
     while (true) {
-        // Check for timeout
+        // check for timeout
         const current_time = time.timestamp();
         if (current_time - start_time >= timeout * 1000) {
             return current_selection;
         }
 
-        // Check for input
+        // check for input
         if (tui.hasInput()) {
             const key = tui.getKey();
 
@@ -557,7 +557,7 @@ updateSelectionDisplay(current_selection);
                     return current_selection;
                 },
                 .c => {
-                    // Enter command line mode
+                    // enter command line mode
                     return commandLineMode();
                 },
                 .f1 => {
@@ -576,18 +576,18 @@ updateSelectionDisplay(current_selection);
             }
         }
 
-        // Small delay to prevent CPU hogging
+        // small delay to prevent CPU hogging
         time.sleep(100); // 100ms
     }
 }
 
 fn updateSelectionDisplay(selection: usize) void {
-    // Clear previous selection
+    // clear previous selection
     for (boot_config.boot.entries.items, 0..) |_, i| {
         tui.printAt(2, i + 2, "  ", .{});
     }
 
-    // Show new selection
+    // show new selection
     tui.printAt(2, selection + 2, "> ", .{});
 }
 
@@ -602,13 +602,13 @@ fn commandLineMode() !usize {
 
         switch (key) {
             .enter => {
-                // Process command
+                // process command
                 const cmd = mem.dupe(u8, allocator, input.items);
                 const result = processCommand(cmd);
                 allocator.free(cmd);
 
                 if (result == .boot) {
-                    // Return to boot menu with last selection
+                    // return to boot menu with last selection
                     return current_selection;
                 } else if (result == .reboot) {
                     rebootSystem();
@@ -618,7 +618,7 @@ fn commandLineMode() !usize {
                     enterRecoveryMode();
                 }
 
-                // Clear input and show prompt again
+                // clear input and show prompt again
                 input.items = std.ArrayList(u8).init(allocator);
                 tui.printAt(0, 22, "ZigBoot> ", .{});
             },
@@ -640,7 +640,7 @@ fn commandLineMode() !usize {
 }
 
 fn processCommand(cmd: []const u8) CommandResult {
-    // Parse command
+    // parse command
     const parts = std.mem.splitSequence(u8, cmd, " ");
     if (parts.len == 0) return .unknown;
 
@@ -652,10 +652,10 @@ fn processCommand(cmd: []const u8) CommandResult {
             return .unknown;
         }
 
-        // Find entry by name or number
+        // find entry by name or number
         const entry = parts[1];
         if (std.mem.isDigit(entry[0])) {
-            // Numeric selection
+            // numeric selection
             const num = std.fmt.parseInt(usize, entry, 10) catch
 |err| {
                 tui.printAt(0, 23, "Invalid entry number: {s}",
@@ -672,7 +672,7 @@ boot_config.boot.entries.items.len) {
                 return .unknown;
             }
         } else {
-            // Name selection
+            // name selection
             for (boot_config.boot.entries.items, 0..) |e, i| {
                 if (std.mem.eql(u8, e.name, entry)) {
                     current_selection = i;
@@ -801,16 +801,16 @@ fn showNetworkStatus() void {
 fn bootSelectedEntry(selection: usize) !void {
     const entry = boot_config.boot.entries.items[selection];
 
-    // Display boot message
+    // display boot message
     tui.clear();
     tui.printAt(2, 0, "Booting {s}...", .{entry.name});
 
-    // Verify boot image
+    // verify boot image
     if (!verifyBootImage(entry)) {
         panic.panic("Boot image verification failed", .{});
     }
 
-    // Load kernel and initrd
+    // load kernel and initrd
     var kernel: []const u8 = undefined;
     var initrd: ?[]const u8 = null;
 
@@ -857,16 +857,16 @@ fn bootSelectedEntry(selection: usize) !void {
         .secure_boot = boot_config.security.secure_boot,
     };
 
-    // Hand off to boot protocol
+    // hand off to boot protocol
     boot.bootKernel(boot_params) catch |err| {
         panic.panic("Boot failed", .{err});
     };
 }
 
 fn verifyBootImage(entry: BootEntry) bool {
-    // For local files
+    // for local files
     if (entry.local) {
-        // Verify signature if secure boot is enabled
+        // verify signature if secure boot is enabled
         if (boot_config.security.secure_boot) {
             const kernel = fs.readFile(entry.path) catch |err| {
                 std.debug.print("Failed to read kernel: {s}\n",
@@ -883,10 +883,10 @@ catch |err| {
             };
             defer allocator.free(signature);
 
-            // Get public key
+            // get public key
             const pub_key = keys.getRsaPublicKey();
 
-            // Verify signature
+            // verify signature
             if (!rsa.verify(kernel, signature, pub_key)) {
                 std.debug.print("Signature verification
 failed\n", .{});
@@ -896,7 +896,7 @@ failed\n", .{});
 
         return true;
     }
-    // For network files, verification happens during download
+    // for network files, verification happens during download
     return true;
 }
 
@@ -1005,7 +1005,7 @@ Rebooting...", .{});
 }
 
 fn resetConfig() void {
-    // Reset to default configuration
+    // reset to default configuration
     boot_config = loadConfiguration() catch |err| {
         panic.panic("Failed to reset configuration", .{err});
     };
@@ -1015,14 +1015,14 @@ fn verifyFilesystem() void {
     tui.clear();
     tui.printAt(2, 0, "Filesystem Verification", .{});
 
-    // Verify ZFS image
+    // verify ZFS image
     if (zfs.verify()) {
         tui.printAt(2, 2, "ZFS image: OK", .{});
     } else {
         tui.printAt(2, 2, "ZFS image: CORRUPT", .{});
     }
 
-    // Verify disk filesystems
+    // verify disk filesystems
     #ifdef X86
         if (fat32.verify(0)) {
             tui.printAt(2, 3, "FAT32 disk: OK", .{});
@@ -1054,7 +1054,7 @@ fn networkDiagnostics() void {
         return;
     }
 
-    // Test DHCP
+    // test DHCP
     tui.printAt(2, 2, "Testing DHCP...", .{});
     if (dhcp.test()) {
         tui.printAt(2, 2, "DHCP: OK", .{});
@@ -1062,7 +1062,7 @@ fn networkDiagnostics() void {
         tui.printAt(2, 2, "DHCP: FAILED", .{});
     }
 
-    // Test TFTP
+    // test TFTP
     tui.printAt(2, 3, "Testing TFTP...", .{});
     if (tftp.test()) {
         tui.printAt(2, 3, "TFTP: OK", .{});
@@ -1070,7 +1070,7 @@ fn networkDiagnostics() void {
         tui.printAt(2, 3, "TFTP: FAILED", .{});
     }
 
-    // Test HTTP
+    // test HTTP
     tui.printAt(2, 4, "Testing HTTP...", .{});
     if (http.test()) {
         tui.printAt(2, 4, "HTTP: OK", .{});
@@ -1101,7 +1101,7 @@ fn memoryTest() void {
 }
 
 fn rebootSystem() !void {
-    // Platform-specific reboot
+    // platform-specific reboot
     #ifdef X86
         mmio.rebootX86();
     #elseif ARM
@@ -1115,7 +1115,7 @@ fn rebootSystem() !void {
 }
 
 fn shutdownSystem() !void {
-    // Platform-specific shutdown
+    // platform-specific shutdown
     #ifdef X86
         mmio.shutdownX86();
     #elseif ARM
@@ -1130,20 +1130,20 @@ fn shutdownSystem() !void {
 
 fn customPanicHandler(message: []const u8, context: anytype)
 noret {
-    // Display panic message
+    // display panic message
     tui.clear();
     tui.printAt(2, 0, "*** ZIGBOOT PANIC ***", .{});
     tui.printAt(2, 2, "Message: {s}", .{message});
 
-    // Display context if available
+    // display context if available
     if (context) |ctx| {
         tui.printAt(2, 3, "Context: {any}", .{ctx});
     }
 
-    // Display stack trace if available
+    // display stack trace if available
     #ifdef DEBUG
         tui.printAt(2, 5, "Stack trace:", .{});
-        // Platform-specific stack trace
+        // platform-specific stack trace
         #ifdef X86
             mmio.printStackTraceX86();
         #elseif ARM
@@ -1153,7 +1153,7 @@ noret {
         #endif
     #endif
 
-    // Show recovery options
+    // show recovery options
     tui.printAt(2, 10, "Press R to reboot or any other key for
 recovery shell", .{});
 
@@ -1241,7 +1241,7 @@ fn processRecoveryCommand(cmd: []const u8) void {
     }
 }
 
-// Data structures
+// data structures
 const BootEntry = struct {
     name: []const u8,
     path: []const u8,
@@ -1292,7 +1292,7 @@ const CommandResult = enum {
     recovery,
 };
 
-// Error types
+// error types
 const Error = error{
     ConfigurationError,
     KernelLoadError,
