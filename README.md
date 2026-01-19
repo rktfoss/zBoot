@@ -1,4 +1,4 @@
-# zBoot - 0.06% complete
+# zBoot - 0.8% complete
  
  **about**
 
