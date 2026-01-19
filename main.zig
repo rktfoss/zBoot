@@ -33,7 +33,10 @@ const pci = @import("hardware/pci.zig");
 
 // import filesystem modules
 const fat32 = @import("fs/fat32.zig");
+const btrfs = @import("fs/btrfs.zig");
+const exfat = @import("fs/exfat.zig");
 const ext4 = @import("fs/ext4.zig");
+const ntfs = @import("fs/ntfs.zig");
 const zfs = @import("fs/zfs.zig");
 
 // import crypto modules
