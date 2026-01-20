@@ -18,12 +18,12 @@ pub const Raid6 = struct {
         const disk_idx = self.calculate_disk(lba);
         const stripe_lba = lba / self.stripe_size;
 
-        // Rotate parity disks
+        // rotate parity disks
         self.parity_disks[0] = (stripe_lba % @intCast(u64, self.disks.len));
         self.parity_disks[1] = (stripe_lba + 1) % @intCast(u64, self.disks.len);
 
         if (disk_idx == self.parity_disks[0] || disk_idx == self.parity_disks[1]) {
-            // Reconstruct from other disks
+            // reconstruct from other disks
             try self.reconstruct_data(lba, buffer);
         } else {
             try self.disks[disk_idx].read(lba, buffer);
