@@ -69,7 +69,7 @@ pub fn main() !void {
     // initialize the system
     initSystem();
 
-    // tet up panic handler
+    // set up panic handler
     panic.setHandler(customPanicHandler);
 
     // initialize hardware
