@@ -9,7 +9,7 @@ const block = @import("block.zig");
 pub const Raid5 = struct {
     disks: []block.BlockDevice,
     stripe_size: usize = 64 * 1024, // 64KB stripes
-    parity_disk: usize = 0,         // Rotating parity
+    parity_disk: usize = 0,         // rotating parity
 
     pub fn init(disks: []block.BlockDevice) !Raid5 {
         if (disks.len < 3) return error.NotEnoughDisks;
@@ -20,14 +20,14 @@ pub const Raid5 = struct {
         const disk_idx = self.calculate_disk(lba);
         const stripe_lba = lba / self.stripe_size;
 
-        // Rotate parity disk per stripe
+        // rotate parity disk per stripe
         self.parity_disk = (stripe_lba % @intCast(usize, self.disks.len));
 
         if (disk_idx == self.parity_disk) {
-            // Reconstruct from other disks
+            // reconstruct from other disks
             try self.reconstruct_data(lba, buffer);
         } else {
-            // Read directly
+            // read directly
             try self.disks[disk_idx].read(lba, buffer);
         }
     }
@@ -36,12 +36,12 @@ pub const Raid5 = struct {
         const disk_idx = self.calculate_disk(lba);
         const stripe_lba = lba / self.stripe_size;
 
-        // Update parity
+        // update parity
         if (disk_idx != self.parity_disk) {
             try self.update_parity(lba, data);
         }
 
-        // Write data
+        // write data
         try self.disks[disk_idx].write(lba, data);
     }
 
