@@ -933,8 +933,7 @@ fn enterRecoveryMode() !void {
             switch (c) {
                 '1' => {
                     resetConfig();
-                    tui.printAt(2, 10, "Configuration reset.
-Rebooting...", .{});
+                    tui.printAt(2, 10, "Configuration reset. Rebooting...", .{});
                     time.sleep(2000);
                     rebootSystem();
                 },
