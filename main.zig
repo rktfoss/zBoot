@@ -1,4 +1,4 @@
-//DO NOT USE, for veiwing only, messed with lines bellow 376 & 1017 "filesystems" to fix 
+//DO NOT USE, for veiwing only, messed with lines bellow 376 & 1017 "filesystems" to fix Note to self: always double check copying files over!!!
 
 ```zig
 const std = @import("std");
@@ -85,7 +85,7 @@ pub fn main() !void {
 
     // initialize network if needed
     if (boot_config.network.dhcp_enabled ||
-boot_config.network.http_boot) {
+    boot_config.network.http_boot) {
         network_initialized = initNetwork();
     }
 
@@ -156,14 +156,12 @@ fn loadConfiguration() !BootConfig {
 
     // try to load configuration from disk if available
     if (fs.exists("zigboot/config.json")) {
-        const disk_config = try fs.readFileAlloc(allocator,
-"zigboot/config.json", 4096);
+        const disk_config = try fs.readFileAlloc(allocator, "zigboot/config.json", 4096);
         defer allocator.free(disk_config);
 
         const disk_boot_config = try
-parseBootConfig(disk_config);
-        // merge configurations
-(disk config takes precedence)
+        parseBootConfig(disk_config);
+        // merge configurations (disk config takes precedence)
         config = mergeConfigs(config, disk_boot_config);
     }
 
@@ -194,65 +192,39 @@ fn parseBootConfig(data: []const u8) !BootConfig {
     // extract configuration values
     var config = BootConfig{
         .boot = .{
-            .timeout =
-json_value.Object.get("boot").?.Object.get("timeout").?.Number
-orelse 5,
-            .default_entry =
-json_value.Object.get("boot").?.Object.get("default_entry").?.Strijson_value.Object.get("boot").?.Objec.get("default_entry").?.String orelse "ZigOS",
+            .timeout = json_value.Object.get("boot").?.Object.get("timeout").?.Number orelse 5,
+            .default_entry = json_value.Object.get("boot").?.Object.get("default_entry").?.Strijson_value.Object.get("boot").?.Objec.get("default_entry").?.String orelse "ZigOS",
             .entries = std.ArrayList(BootEntry).init(allocator),
-            .pxe_enabled =
-json_value.Object.get("boot").?.Object.get("pxe_enabled").?.Bool
-orelse false,
-            .http_boot =
-json_value.Object.get("boot").?.Object.get("http_boot").?.Bool
-orelse false,
+            .pxe_enabled = json_value.Object.get("boot").?.Object.get("pxe_enabled").?.Bool orelse false,
+            .http_boot = json_value.Object.get("boot").?.Object.get("http_boot").?.Bool orelse false,
         },
         .security = .{
-            .secure_boot =
-json_value.Object.get("security").?.Object.get("secure_boot").?.Bojson_value.Object.get("security").?.Objct.get("secure_boot").?.Bool orelse true,
-            .tpm_required =
-json_value.Object.get("security").?.Object.get("tpm_required").?.Bjson_value.Object.get("security").?.Obect.get("tpm_required").?.Bool orelse false,
-            .measure_boot =
-json_value.Object.get("security").?.Object.get("measure_boot").?.Bjson_value.Object.get("security").?.Obect.get("measure_boot").?.Bool orelse false,
+            .secure_boot = json_value.Object.get("security").?.Object.get("secure_boot").?.Bojson_value.Object.get("security").?.Objct.get("secure_boot").?.Bool orelse true,
+            .tpm_required = json_value.Object.get("security").?.Object.get("tpm_required").?.Bjson_value.Object.get("security").?.Obect.get("tpm_required").?.Bool orelse false,
+            .measure_boot = json_value.Object.get("security").?.Object.get("measure_boot").?.Bjson_value.Object.get("security").?.Obect.get("measure_boot").?.Bool orelse false,
         },
         .network = .{
-            .dhcp_enabled =
-json_value.Object.get("network").?.Object.get("dhcp_enabled").?.Bojson_value.Object.get("network").?.Objct.get("dhcp_enabled").?.Bool orelse true,
-            .timeout =
-json_value.Object.get("network").?.Object.get("timeout").?.Number
-orelse 5,
-            .http_boot =
-json_value.Object.get("network").?.Object.get("http_boot").?.Bool
-orelse false,
-            .pxe_server =
-json_value.Object.get("network").?.Object.get("pxe_server").?.Strijson_value.Object.get("network").?.Objec.get("pxe_server").?.String orelse "",
+            .dhcp_enabled = json_value.Object.get("network").?.Object.get("dhcp_enabled").?.Bojson_value.Object.get("network").?.Objct.get("dhcp_enabled").?.Bool orelse true,
+            .timeout = json_value.Object.get("network").?.Object.get("timeout").?.Number orelse 5,
+            .http_boot = json_value.Object.get("network").?.Object.get("http_boot").?.Bool orelse false,
+            .pxe_server = json_value.Object.get("network").?.Object.get("pxe_server").?.Strijson_value.Object.get("network").?.Objec.get("pxe_server").?.String orelse "",
         },
         .debug = .{
-            .serial_output =
-json_value.Object.get("debug").?.Object.get("serial_output").?.Boojson_value.Object.get("debug").?.Objet.get("serial_output").?.Bool orelse true,
-            .recovery_mode =
-json_value.Object.get("debug").?.Object.get("recovery_mode").?.Boojson_value.Object.get("debug").?.Objet.get("recovery_mode").?.Bool orelse false,
+            .serial_output = json_value.Object.get("debug").?.Object.get("serial_output").?.Boojson_value.Object.get("debug").?.Objet.get("serial_output").?.Bool orelse true,
+            .recovery_mode = json_value.Object.get("debug").?.Object.get("recovery_mode").?.Boojson_value.Object.get("debug").?.Objet.get("recovery_mode").?.Bool orelse false,
         },
     };
 
     // parse boot entries
-    if (json_value.Object.get("boot").?.Object.get("entries"))
-|entries| {
+    if (json_value.Object.get("boot").?.Object.get("entries")) |entries| {
         for (entries.Array) |entry| {
-            const name = entry.Object.get("name").?.String orelse
-"Unknown";
-            const path = entry.Object.get("path").?.String orelse
-"";
-            const args = entry.Object.get("args").?.String orelse
-"";
-            const initrd = entry.Object.get("initrd").?.String
-orelse "";
-            const local = entry.Object.get("local").?.Bool orelse
-true;
-            const pxe = entry.Object.get("pxe").?.Bool orelse
-false;
-            const http = entry.Object.get("http").?.Bool orelse
-false;
+            const name = entry.Object.get("name").?.String orelse "Unknown";
+            const path = entry.Object.get("path").?.String orelse "";
+            const args = entry.Object.get("args").?.String orelse "";
+            const initrd = entry.Object.get("initrd").?.String orelse "";
+            const local = entry.Object.get("local").?.Bool orelse true;
+            const pxe = entry.Object.get("pxe").?.Bool orelse false;
+            const http = entry.Object.get("http").?.Bool orelse false;
 
             try config.boot.entries.append(.{
                 .name = name,
@@ -275,8 +247,7 @@ BootConfig {
     return .{
         .boot = .{
             .timeout = override.boot.timeout,
-            .default_entry = if (override.boot.default_entry.len
-> 0)
+            .default_entry = if (override.boot.default_entry.len> 0)
                 override.boot.default_entry
             else
                 base.boot.default_entry,
@@ -332,7 +303,7 @@ fn validateConfig(config: *BootConfig) bool {
     var found_default = false;
     for (config.boot.entries.items) |entry| {
         if (std.mem.eql(u8, entry.name,
-config.boot.default_entry)) {
+        config.boot.default_entry)) {
             found_default = true;
             break;
         }
@@ -477,8 +448,7 @@ fn setupUI() void {
     tui.createStatusBar(.{
         .id = "status",
         .y = 22,
-        .text = "Use arrow keys to select, Enter to boot, 'c' for
-command line",
+        .text = "Use arrow keys to select, Enter to boot, 'c' forcommand line",
     });
 
     // create help bar
@@ -494,8 +464,7 @@ fn runBootloader() !void {
     displayBootMenu();
 
     // Wait for user input or timeout
-    const selection = waitForSelection(boot_config.boot.timeout)
-catch |err| {
+    const selection = waitForSelection(boot_config.boot.timeout) catch |err| {
         panic.panic("Failed to get user selection", .{err});
     };
 
@@ -512,15 +481,12 @@ fn displayBootMenu() void {
 
     // display boot entries
     for (boot_config.boot.entries.items, 0..) |entry, i| {
-        const prefix = if (std.mem.eql(u8, entry.name,
-boot_config.boot.default_entry)) "* " else "  ";
-        tui.printAt(2, i + 2, "{s}{d}. {s}", .{prefix, i + 1,
-entry.name});
+        const prefix = if (std.mem.eql(u8, entry.name, boot_config.boot.default_entry)) "* " else "  ";
+        tui.printAt(2, i + 2, "{s}{d}. {s}", .{prefix, i + 1, entry.name});
     }
 
     // display instructions
-    tui.printAt(2, 20, "Use arrow keys to select, Enter to boot,
-'c' for command line", .{});
+    tui.printAt(2, 20, "Use arrow keys to select, Enter to boot, 'c' for command line", .{});
 }
 
 fn waitForSelection(timeout: u32) !usize {
@@ -531,7 +497,7 @@ fn waitForSelection(timeout: u32) !usize {
     var default_index: usize = 0;
     for (boot_config.boot.entries.items, 0..) |entry, i| {
         if (std.mem.eql(u8, entry.name,
-boot_config.boot.default_entry)) {
+    boot_config.boot.default_entry)) {
             default_index = i;
             break;
         }
@@ -560,8 +526,7 @@ updateSelectionDisplay(current_selection);
                     }
                 },
                 .down => {
-                    if (current_selection <
-boot_config.boot.entries.items.len - 1) {
+                    if (current_selection < boot_config.boot.entries.items.len - 1) {
                         current_selection += 1;
 
 updateSelectionDisplay(current_selection);
@@ -639,14 +604,12 @@ fn commandLineMode() !usize {
             .backspace => {
                 if (input.items.len > 0) {
                     input.pop();
-                    tui.printAt(9 + input.items.len, 22, " \b",
-.{});
+                    tui.printAt(9 + input.items.len, 22, " \b", .{});
                 }
             },
             .char => |c| {
                 try input.append(c);
-                tui.printAt(9 + input.items.len - 1, 22, "{c}",
-.{c});
+                tui.printAt(9 + input.items.len - 1, 22, "{c}", .{c});
             },
             else => {},
         }
@@ -670,15 +633,12 @@ fn processCommand(cmd: []const u8) CommandResult {
         const entry = parts[1];
         if (std.mem.isDigit(entry[0])) {
             // numeric selection
-            const num = std.fmt.parseInt(usize, entry, 10) catch
-|err| {
-                tui.printAt(0, 23, "Invalid entry number: {s}",
-.{err});
+            const num = std.fmt.parseInt(usize, entry, 10) catch |err| {
+                tui.printAt(0, 23, "Invalid entry number: {s}", .{err});
                 return .unknown;
             };
 
-            if (num >= 1 && num <=
-boot_config.boot.entries.items.len) {
+            if (num >= 1 && num <=boot_config.boot.entries.items.len) {
                 current_selection = num - 1;
                 return .boot;
             } else {
@@ -704,8 +664,7 @@ boot_config.boot.entries.items.len) {
     } else if (std.mem.eql(u8, command, "recovery")) {
         return .recovery;
     } else if (std.mem.eql(u8, command, "help")) {
-        tui.printAt(0, 23, "Available commands: boot, reboot,
-shutdown, recovery, help", .{});
+        tui.printAt(0, 23, "Available commands: boot, reboot, shutdown, recovery, help", .{});
         return .unknown;
     } else if (std.mem.eql(u8, command, "network")) {
         if (parts.len < 2) {
@@ -718,21 +677,17 @@ shutdown, recovery, help", .{});
             if (!network_initialized) {
                 network_initialized = initNetwork();
                 if (network_initialized) {
-                    tui.printAt(0, 23, "Network initialized",
-.{});
+                    tui.printAt(0, 23, "Network initialized", .{});
                 } else {
-                    tui.printAt(0, 23, "Network initialization
-failed", .{});
+                    tui.printAt(0, 23, "Network initialization failed", .{});
                 }
             } else {
-                tui.printAt(0, 23, "Network already initialized",
-.{});
+                tui.printAt(0, 23, "Network already initialized", .{});
             }
         } else if (std.mem.eql(u8, subcmd, "status")) {
             showNetworkStatus();
         } else {
-            tui.printAt(0, 23, "Unknown network command: {s}",
-.{subcmd});
+            tui.printAt(0, 23, "Unknown network command: {s}", .{subcmd});
         }
         return .unknown;
     } else {
@@ -759,20 +714,13 @@ fn showHelp() void {
 fn showConfig() void {
     tui.clear();
     tui.printAt(2, 0, "ZigBoot Configuration", .{});
-    tui.printAt(2, 2, "Boot Timeout: {d} seconds",
-.{boot_config.boot.timeout});
-    tui.printAt(2, 3, "Default Entry: {s}",
-.{boot_config.boot.default_entry});
-    tui.printAt(2, 4, "Secure Boot: {s}", .{if
-(boot_config.security.secure_boot) "Enabled" else "Disabled"});
-    tui.printAt(2, 5, "TPM Required: {s}", .{if
-(boot_config.security.tpm_required) "Yes" else "No"});
-    tui.printAt(2, 6, "DHCP Enabled: {s}", .{if
-(boot_config.network.dhcp_enabled) "Yes" else "No"});
-    tui.printAt(2, 7, "PXE Enabled: {s}", .{if
-(boot_config.boot.pxe_enabled) "Yes" else "No"});
-    tui.printAt(2, 8, "HTTP Boot: {s}", .{if
-(boot_config.boot.http_boot) "Yes" else "No"});
+    tui.printAt(2, 2, "Boot Timeout: {d} seconds", .{boot_config.boot.timeout});
+    tui.printAt(2, 3, "Default Entry: {s}", .{boot_config.boot.default_entry});
+    tui.printAt(2, 4, "Secure Boot: {s}", .{if (boot_config.security.secure_boot) "Enabled" else "Disabled"});
+    tui.printAt(2, 5, "TPM Required: {s}", .{if (boot_config.security.tpm_required) "Yes" else "No"});
+    tui.printAt(2, 6, "DHCP Enabled: {s}", .{if (boot_config.network.dhcp_enabled) "Yes" else "No"});
+    tui.printAt(2, 7, "PXE Enabled: {s}", .{if (boot_config.boot.pxe_enabled) "Yes" else "No"});
+    tui.printAt(2, 8, "HTTP Boot: {s}", .{if (boot_config.boot.http_boot) "Yes" else "No"});
     tui.printAt(2, 10, "Press any key to continue...", .{});
     tui.getKey();
     displayBootMenu();
@@ -795,16 +743,11 @@ fn showNetworkStatus() void {
         tui.printAt(2, 4, "Gateway: {s}", .{gateway});
         tui.printAt(2, 5, "DNS: {s}", .{dns});
         tui.printAt(2, 7, "Network protocols:", .{});
-        tui.printAt(4, 8, "DHCP: {s}", .{if (dhcp.isActive())
-"Active" else "Inactive"});
-        tui.printAt(4, 9, "TFTP: {s}", .{if (tftp.isActive())
-"Active" else "Inactive"});
-        tui.printAt(4, 10, "HTTP: {s}", .{if (http.isActive())
-"Active" else "Inactive"});
-        tui.printAt(4, 11, "QUIC: {s}", .{if (quic.isActive())
-"Active" else "Inactive"});
-        tui.printAt(4, 12, "PXE: {s}", .{if (pxe.isActive())
-"Active" else "Inactive"});
+        tui.printAt(4, 8, "DHCP: {s}", .{if (dhcp.isActive()) "Active" else "Inactive"});
+        tui.printAt(4, 9, "TFTP: {s}", .{if (tftp.isActive()) "Active" else "Inactive"});
+        tui.printAt(4, 10, "HTTP: {s}", .{if (http.isActive()) "Active" else "Inactive"});
+        tui.printAt(4, 11, "QUIC: {s}", .{if (quic.isActive()) "Active" else "Inactive"});
+        tui.printAt(4, 12, "PXE: {s}", .{if (pxe.isActive()) "Active" else "Inactive"});
     }
 
     tui.printAt(2, 14, "Press any key to continue...", .{});
@@ -883,16 +826,13 @@ fn verifyBootImage(entry: BootEntry) bool {
         // verify signature if secure boot is enabled
         if (boot_config.security.secure_boot) {
             const kernel = fs.readFile(entry.path) catch |err| {
-                std.debug.print("Failed to read kernel: {s}\n",
-.{err});
+                std.debug.print("Failed to read kernel: {s}\n", .{err});
                 return false;
             };
             defer allocator.free(kernel);
 
-            const signature = fs.readFile(entry.path ++ ".sig")
-catch |err| {
-                std.debug.print("Failed to read signature:
-{s}\n", .{err});
+            const signature = fs.readFile(entry.path ++ ".sig") catch |err| {
+                std.debug.print("Failed to read signature: {s}\n", .{err});
                 return false;
             };
             defer allocator.free(signature);
@@ -902,8 +842,7 @@ catch |err| {
 
             // verify signature
             if (!rsa.verify(kernel, signature, pub_key)) {
-                std.debug.print("Signature verification
-failed\n", .{});
+                std.debug.print("Signature verification failed\n", .{});
                 return false;
             }
         }
@@ -1138,8 +1077,7 @@ fn rebootSystem() !void {
     #elseif RISCV
         mmio.rebootRISCV();
     #else
-        panic.panic("Reboot not supported on this platform",
-.{});
+        panic.panic("Reboot not supported on this platform", .{});
     #endif
 }
 
@@ -1152,8 +1090,7 @@ fn shutdownSystem() !void {
     #elseif RISCV
         mmio.shutdownRISCV();
     #else
-        panic.panic("Shutdown not supported on this platform",
-.{});
+        panic.panic("Shutdown not supported on this platform", .{});
     #endif
 }
 
@@ -1183,8 +1120,7 @@ noret {
     #endif
 
     // show recovery options
-    tui.printAt(2, 10, "Press R to reboot or any other key for
-recovery shell", .{});
+    tui.printAt(2, 10, "Press R to reboot or any other key for recovery shell", .{});
 
     const key = tui.getKey();
     if (key == .char) |c| {
@@ -1214,8 +1150,7 @@ fn recoveryShell() !void {
 
             switch (key) {
                 .enter => {
-                    const cmd = mem.dupe(u8, allocator,
-input.items);
+                    const cmd = mem.dupe(u8, allocator, input.items);
                     processRecoveryCommand(cmd);
                     allocator.free(cmd);
                     break;
@@ -1223,14 +1158,12 @@ input.items);
                 .backspace => {
                     if (input.items.len > 0) {
                         input.pop();
-                        tui.printAt(4 + input.items.len, 4, "
-\b", .{});
+                        tui.printAt(4 + input.items.len, 4, " \b", .{});
                     }
                 },
                 .char => |c| {
                     try input.append(c);
-                    tui.printAt(4 + input.items.len - 1, 4,
-"{c}", .{c});
+                    tui.printAt(4 + input.items.len - 1, 4, "{c}", .{c});
                 },
                 else => {},
             }
