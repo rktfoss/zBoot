@@ -11,7 +11,7 @@ pub const Btrfs = struct {
     root_tree: RootTree,
 
     pub fn init(dev: block.BlockDevice) !Btrfs {
-        // Read superblock (multiple copies)
+        // read superblock (multiple copies)
         const sb = try find_valid_superblock(dev);
 
         return .{
@@ -23,10 +23,10 @@ pub const Btrfs = struct {
     }
 
     pub fn create_snapshot(self: *Btrfs, src: []const u8, dest: []const u8) !void {
-        // 1. Find source subvolume
+        // 1. find source subvolume
         const src_root = try self.find_subvolume(src);
 
-        // 2. Create new snapshot
+        // 2. create new snapshot
         try self.root_tree.create_snapshot(src_root, dest);
     }
 };
