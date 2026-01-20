@@ -12,7 +12,7 @@ pub const Ext4 = struct {
     journal: Journal,
 
     pub fn init(dev: block.BlockDevice) !Ext4 {
-        // Read superblock (1024 bytes from start)
+        // read superblock (1024 bytes from start)
         var sb_buf: [1024]u8 = undefined;
         try dev.read(1024, &sb_buf);
 
@@ -28,10 +28,10 @@ pub const Ext4 = struct {
     }
 
     pub fn read_file(self: *Ext4, path: []const u8) ![]u8 {
-        // 1. Lookup inode
+        // 1. lookup inode
         const inode = try self.lookup_inode(path);
 
-        // 2. Read data blocks
+        // 2. read data blocks
         return try self.read_inode_data(inode);
     }
 };
