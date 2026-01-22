@@ -3,6 +3,23 @@
 
 
 
+
+**progressReport: 2026/1/22**
+author: brawijaya
+codeIncluded: started many .zig's added to main branch.
+
+
+Time's been limited, while working on a "better braile" project,
+helping blind or impaired people use a computer & communicate.
+Built a font "a first for me" that was cool! 
+the projects name is "dotrix" & I figure my font will be called the same?
+
+
+anyway added some raid, hw & net stuff, 
+hope to get some more done this week?
+
+
+
 **progressReport: 2026/1/20**
 author: brawijaya
 codeIncluded: build.zig & main.zig "begining of"
@@ -21,7 +38,6 @@ your own or just take the standard version with all the drivers for noobs.
 anyway neen to get it working first !!! -
 framework bellow has the latest add ons, will be more!
 
-```
 zigboot/
 │   
 ├── src/
@@ -104,7 +120,7 @@ zigboot/
 │ 
 ├── build.zig                 # Build system
 └── README.md
-```
+
 
 
 
@@ -166,7 +182,6 @@ Worked on code for boot protocols
 
 
 
-```
 zigboot/
 │   
 ├── src/
@@ -234,7 +249,7 @@ zigboot/
 │ 
 ├── build.zig                 # Build system
 └── README.md
-```
+
 
 
 
